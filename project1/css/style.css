@@ -1,0 +1,39 @@
+
+.list-choosing ul li {
+list-style-image: url(../images/bullet.png);
+font-size: 13px;
+}
+.inside-left-top a{
+    text-decoration: underline;
+    color: red;
+}
+.block-two-heading h1 {
+    color: #829090;
+    text-align: center;
+}
+
+.inside-right-bottom p {
+    padding-top: 12px;
+    padding-bottom: 20px;
+    color: #829090;
+    font-size: 13px;
+    font-style: italic;
+    line-height: 17px;
+    padding-left: 20px;
+    padding-right: 24px;
+}
+
+.block-three-header p {
+    color: red;
+    font-size: 40px;
+    text-align: center;
+}
+
+.three-contents {
+    color: #829090;
+    font-size: 13px;
+    text-align: center;
+    padding-bottom: 71px;
+}
+
+

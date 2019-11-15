@@ -1,0 +1,42 @@
+
+.block-two-heading {
+	padding-top: 72px;
+	padding-bottom: 80px;
+}
+.our-team {
+	padding-left: 163px;
+	height: 340px;
+	
+}
+.mem1 {
+
+	height: 340px;
+	width: 272px;
+	background: green;
+	float: left;
+}
+.mem2 {
+	height: 340px;
+	width: 272px;
+	background: green;
+	margin-left: 29px;
+	float: left;
+}
+.body-block-three{
+	background: #f3f3f3;
+}
+
+
+.block-three-header {
+	padding-top: 219px;
+	padding-bottom: 25px;
+}
+
+
+
+
+
+.tollen-footer{
+	background: #76c7c1;
+	padding-left: 165px;
+}
