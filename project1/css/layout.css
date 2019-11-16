@@ -1,3 +1,120 @@
+.main-block {
+	width: 100%;
+}
+
+.header-top {
+	background: #76c7c1;
+	height: 30px;
+	padding-top: 20px;
+	padding-bottom: 30px;
+	padding-right: 172px;
+	padding-left: 172px;
+}
+
+.tollen-logo {
+	float: left;
+	width: 103px;
+	height: 30px;
+}
+
+.all-menus {
+	float: right;	
+}
+
+.search-icon {
+	padding-top: 17px;
+	float: right;
+	width: 17px;
+	height: 16px;
+}
+
+.menu-list{
+	padding-top: 17px;
+	float: right;
+}
+
+.search-icon a {
+	display: block;
+}
+
+.header-bottom {
+	background-color: #ececec;
+	color: #899392;
+	height: 80px;
+	padding-right: 170px;
+	padding-left: 172px;
+}
+
+.about-section {
+	float: left;
+	padding-top: 34px;
+	
+	font-weight: bold;
+}
+
+.home-or-about {
+	float: right;
+	padding-top: 34px;
+	
+	font-weight: bold;
+}
+
+.body-block-one {
+	background: #f3f3f3;
+	padding-left: 164px;
+	padding-right: 168px;
+	padding-bottom: 76px;
+}
+
+.third-section {
+	padding-top: 73px;
+	overflow: auto;
+
+}
+
+.left-section {
+	float: left;
+	width: 19.3%
+	
+}
+
+.right-section {
+	float:right;
+	width: 74.05%;
+}
+.inside-left {
+	float: left;
+	width: 63.93%;
+}
+.inside-right {
+	float: right;
+	width: 32.14%;
+}
+.list-choosing {
+	padding-left: 20px;
+	padding-top: 36px;
+}
+.inside-left-top{
+	padding-left: 14px;
+	font-size: 14px;
+	color: #899392;
+	padding-bottom: 60px;
+}
+
+
+.inside-right-bottom {
+
+	margin-top: 25px;
+	background: white;
+}
+
+
+
+
+.body-block-two {
+	background: #ececec;
+	height: 400px;
+}
 
 .block-two-heading {
 	padding-top: 72px;
@@ -31,6 +148,19 @@
 	padding-top: 219px;
 	padding-bottom: 25px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

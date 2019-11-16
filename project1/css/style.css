@@ -1,3 +1,66 @@
+.menu-list ul{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+.menu-list ul li{
+	width: auto;
+	float: left;
+	padding-right: 50px;
+}
+
+.menu-list ul li a{
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.home-or-about ul{
+	list-style: none;
+	margin: 0px;
+    padding: 0px;
+    color: #899392;
+}
+
+.home-or-about ul li{
+	width: auto;
+    float: left;
+    padding: 0px 15px;
+}
+
+.home-or-about ul li a{
+    color: #899392;
+    font-size: 13px;
+    font-weight: bold;
+}
+.home-or-about ul li+li{
+    
+	background: url(../images/separator.png) 0 50%;
+	background-repeat:no-repeat;
+}
+.text-heading {
+    color: red;
+    padding-left: 6px;
+    padding-top: 54px;
+    font-size: 24px;
+}
+.text-body {
+    color: #899392;
+    padding-top: 20px;
+    font-size: 14px;
+}
+.text-top{
+    color: #899392;
+    font-size: 16px;
+    font-weight: bold;
+}
+.list-choosing ul{
+    list-style-type: none;
+	margin: 0px;
+    padding: 0px;
+    color: #899392;
+    line-height:18px;
+}
 
 .list-choosing ul li {
 list-style-image: url(../images/bullet.png);
