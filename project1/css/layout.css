@@ -162,7 +162,7 @@
     z-index: 1;
 }
 .hover-img-sec {
-	background-image: url(/images/hover-back.png);
+	background-image: url('images/hover-back.png');
 	height: 315px;
     width: 272px;
     display: none;
