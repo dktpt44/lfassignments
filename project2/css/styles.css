@@ -1,10 +1,10 @@
 .menu-list ul{
-	list-style: none;
+    list-style: none;
+    float: right;
 }
 .menu-list ul li{
 	width: auto;
 	float: left;
-	
 }
 .menu-list ul li a{
     padding: 10px 25px;
@@ -18,75 +18,31 @@
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
-
 .home-or-about ul{
 	list-style: none;
-	margin: 0px;
-    padding: 0px;
     color: #899392;
 }
-
 .home-or-about ul li{
 	width: auto;
     float: left;
     padding: 0px 15px;
 }
-
 .home-or-about ul li a{
     color: #899392;
     font-size: 13px;
     font-weight: bold;
 }
 .home-or-about ul li+li{
-    
 	background: url(../images/separator.png) 0 50%;
 	background-repeat:no-repeat;
 }
-.text-heading {
-    color: red;
-    padding-left: 6px;
-    padding-top: 39px;
-    font-size: 24px;
-}
-.text-body {
-    color: #899392;
-    padding-top: 20px;
-    font-size: 14px;
-}
-
-.list-choosing ul{
-    list-style-image: url('../images/bullet.png');
-	margin: 0px;
-    padding: 0px;
-    color: #899392;
-    line-height:21px;
-}
-
-.list-choosing ul li {
-font-size: 13px;
-}
-.inside-left-top a{
-    text-decoration: underline;
-    color: red;
-}
-.block-two-heading h1 {
-    color: #829090;
-    text-align: center;
-}
-.text-top{
-    color: #899392;
-    font-size: 17px;
+.sidebar-gallery {
+    padding-top: 40px;
+    padding-left: 8px;
     font-weight: bold;
+    color: #7e8887;
 }
-.inside-right-bottom p {
-    background: #f8f8f8;
-    color: #829090;
-    font-size: 13px;
-    font-style: italic;
-    line-height: 17px;
-    padding-left: 20px;
-    padding-right: 24px;
-}
+
 .block-two-heading h1 {
     color: #829090;
     text-align: center;
@@ -97,39 +53,34 @@ font-size: 13px;
     padding: 38px;
     font-size: 13px;
 }
-.img-lists p {
-    padding-top: 23px;
-    color: #829090;
-    font-size: 13px;
-    text-align: center;
-    font-weight: bold;
-}
-.block-three-header p {
-    color: red;
-    font-size: 40px;
-    text-align: center;
-}
-.three-contents {
-    color: #829090;
-    font-size: 13px;
-    text-align: center;
-    padding-bottom: 60px;
-}
-.three-footer {
-    font-weight: bold;
-    font-size: 14px;
-    padding-bottom: 51px;
-}
 
-.jquery-list ul{
-    list-style-type: none;
-    padding-bottom: 69px;
-}
 
-.jquery-list ul li {
-    display: inline;
-    padding-right: 23px;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .some-text p {
     color: white;

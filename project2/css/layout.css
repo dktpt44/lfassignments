@@ -3,38 +3,36 @@
 }
 .header-top {
 	background: #76c7c1;
-	height: 30px;
-	padding: 20px 172px 21px 172px;
+    padding: 20px 172px 21px 172px;
+    overflow: auto;
 }
 .tollen-logo {
-	height: 30px;
-	width: 103px;
+    background: white;
+	padding: 13px 131px 6px 39px;
+    color:red;
 	float: left;
 }
 .all-menus {
-	float: right;	
+    float: right;
 }
 .search-icon {
 	padding-top: 17px;
 	margin-left: 25px;
 	float: right;
 	width: 17px;
-	height: 16px;
+    height: 16px;
 }
-
 .menu-list{
 	margin-top: 7px;
 	float: right;
 	bottom: 0;
 }
-
 .search-icon a {
 	display: block;
 }
 .ruler img {
 	width: 100%;
 }
-
 .header-bottom {
 	background: url(../images/header-back.jpg);
 	color: #899392;
@@ -42,104 +40,111 @@
 	padding-right: 170px;
 	padding-left: 172px;
 }
-
 .about-section {
 	float: left;
 	padding-top: 34px;
 	font-weight: bold;
 }
-
 .home-or-about {
 	float: right;
 	padding-top: 34px;
 	font-weight: bold;
 }
-
-.body-block-one {
-	background: #f3f3f3;
-	padding-left: 164px;
-	padding-right: 168px;
-	padding-bottom: 74px;
+.body-firstx {
+    padding: 38px 167px 0px 164px;
+    background: #f3f3f3;
+}
+.img-secxx {
+    position: relative;
 }
 
-.third-section {
-	padding-top: 73px;
-	overflow: auto;
+.leftimgxx{
+    float: left;
+    position: absolute;
+    top: 45%;
+    left:0px;
+    z-index: 1;
+}
+.theimagexx{
+    width: 100%;
+}
+.rightimgxx {
+    float: right;
+    position: absolute;
+    z-index: 1;
+    top: 45%;
+    right:0px;
+}
+.bodyf-textx {
+    font-size: 18px;
+    color: #aeb8b7;
+    font-weight: bold;
+    position: absolute;
+    z-index: 1;
+    left: 44%;
+    bottom: 138px;
+}
+.linesxyx {
+    padding-top: 34px;
+    text-align: center;
+}
+.inside-linesxx {
+    display: inline-block;
+}
+.body-secondxx {
+    padding: 65px 167px 0px 164px;
+    background: #f3f3f3;
+    overflow:auto;
+}
+.second-leftxx {
+    float: left;
+    width: 74.4662%;
+}
+.second-right {
+    float: right;
+    width: 23.5696%;
 }
 
-.left-section {
-	float: left;
-	width: 19.3123%
+.bodytwo-text {
+    font-size: 18px;
+    color: #aeb8b7;
+    font-weight: bold;
+    position: absolute;
+    z-index: 1;
+    left: 38%;
+    bottom: 138px;
 }
+.bodytwo-text-bottom {
+    font-size: 13px;
+    color: #aeb8b7;
+    font-weight: bold;
+    position: absolute;
+    z-index: 1;
+    left: 30%;
+    bottom: 40px;
+}
+.lines-small {
+    padding-top: 14px;
+    text-align: center;
+}
+.imgx {
+    margin-top: 28px;
+    margin-right:32px;
+    float: left;
+}
+.imgy {
+    margin-top: 28px;
+    float: left;
+}
+.body-third {
 
-.right-section {
-	float:right;
-	width: 74.0501%;
-}
+    padding: 55px 167px 30px 164px;
+    background: #f3f3f3;
+    overflow:auto;
 
-.inside-left {
-	float: left;
-	width: 67.5412%;
-}
-.img-lists {
-	float: left;
-	margin-right: 25px;
-}
-
-.inside-right {
-	float: right;
-	width: 32.1411%;
-}
-.list-choosing {
-	padding-left: 20px;
-	padding-top: 36px;
-}
-.inside-left-top{
-	padding-left: 14px;
-	font-size: 14px;
-	color: #899392;
-	padding-bottom: 60px;
-}
-.rb-holder {
-	position: relative;
-}
-.top-img-x {
-	margin-top: 25px;
-}
-.rb-holder {
-	width: 272px;
-}
-.inside-right-bottom {
-	background: #f8f8f8;
-}
-
-.client-name {
-	color: #757575;
-	position: absolute;
-	bottom: 0px;
-	left:57px;
-	font-weight: bolder;
-	font-size: 14px;
 }
 
 
-.block-two-ruler img {
-	width: 100%;
-}
-.body-block-two {
-	background: #ececec;
-	height: 400px;
-}
-
-.block-two-heading {
-	padding-top: 72px;
-	padding-bottom: 80px;
-}
-.our-team {
-	padding-left: 163px;
-	height: 340px;
-	
-}
 .mem1 {
 
 	height: 340px;
@@ -162,7 +167,7 @@
     z-index: 1;
 }
 .hover-img-sec {
-	background-image: url(/images/hover-back.png);
+	background-image: url(/images/selected-background.jpg);
 	height: 315px;
     width: 272px;
     display: none;
@@ -219,27 +224,36 @@
     padding-bottom:57px;
 }
 
-.body-block-three{
-	background: #f3f3f3;
-	padding-left: 172px;
-	padding-right:172px;
-	color: #757575;
-	
-}
 
-.block-three-header {
-	padding-top: 219px;
-	padding-bottom: 25px;
-}
 
-.img-dotline {
-	padding-right: 17px;
-	margin-top:2px;
-	max-width: 888px;
-}
-.img-points{
-	padding-right: 20px;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,14 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	font-family: Arial;
+	box-sizing: border-box;
+}
+a{
+	text-decoration: none;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+
