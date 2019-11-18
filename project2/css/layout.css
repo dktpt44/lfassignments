@@ -167,7 +167,7 @@
     z-index: 1;
 }
 .hover-img-sec {
-	background-image: url(/images/selected-background.jpg);
+	background-image: url(../images/selected-background.jpg);
 	height: 315px;
     width: 272px;
     display: none;
