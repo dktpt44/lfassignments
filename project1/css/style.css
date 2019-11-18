@@ -14,7 +14,7 @@
     font-weight: bold;
 }
 .menu-list ul li a:hover{
-    background-image: url('/images/selected-back.jpg');
+    background-image: url('../images/selected-back.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
