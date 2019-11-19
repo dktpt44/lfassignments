@@ -1,0 +1,206 @@
+.top-main {
+    min-width: 1140px;
+    background-color: #efefef;
+}
+
+.main-header {
+    padding: 65px 68px 0px 52px;
+}
+@media only screen and (max-width: 1140px){
+    .main-header {
+        padding: 65px 0px 0px 0px;
+    }
+}
+.youniverse-logo {
+    float: left;
+}
+.top-items {
+    float: right;
+}
+
+.top-ad {
+    padding-top: 51px;
+    padding-bottom: 236px;
+    
+}
+.ad-box {
+    width: 0%;
+    margin: 0 auto;
+}
+.nav-bar{
+    background-color: black;
+    min-width: 1140px;
+}
+.nav-menu-items {
+    width: 1140px;
+    margin: 0 auto;
+}
+.rest-of-the-body {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+.featured-items{
+    padding-top: 85px;
+    width: 1140px;
+    margin: 0 auto;
+    padding-bottom: 112px;
+}
+.bodyf-items {
+    height: 223px;
+    width: 364px;
+    float: left;
+    background-image: url(../images/unselected-itembg.jpg);
+    background-size: 100% 100%;
+    margin-left: 10px;
+}
+.bodyf-items:hover {
+    background-image: url(../images/selected-itembg.jpg);
+    background-size: cover;  
+}
+.bodyf-items a{
+    display: block;
+    padding: 33px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.bodyf-some-text {
+    padding-top: 119px;
+    padding-bottom: 23px;
+}
+.very-small-line {
+    width: 1140px;
+}
+.align-center {
+    margin: 0 auto;
+}
+.featured-furnitures {
+    width: 1140px;
+    padding-top: 60px;
+    padding-bottom: 100px;
+}
+.ff-items {
+    float: left;
+    margin-left: 10px;
+    width: 267px;
+    height: 395px;
+    background-color: white;
+    border: 1px solid #ededed;
+    
+}
+.promo {
+    height: 26px;
+    width: 58px;
+    background-color: black;
+    margin: 14px 0 0 15px;
+}
+.no-promo{
+    color: white;
+    height: 26px;
+    width: 58px;
+    background-color: white;
+    margin: 14px 0 0 15px;
+}
+.new-item {
+    height: 26px;
+    width: 58px;
+    background-color: #fac012;
+    margin: 14px 0 0 15px;
+}
+.collection-from {
+    margin: 163px 26px 0px 26px;
+}
+.item-desc {
+    margin: 24px 26px 0px 26px;
+}
+.item-price {
+    margin-top: 19px;
+}
+.add-to-cart {
+    margin-top: 28px;
+    background-color: #fac012;
+}
+.imgalign {
+    padding-right: 11px;
+}
+.body-second{
+    background-color: black;
+    min-width: 1140px;
+    padding: 120px 0px 0px 0px;
+}
+.bodys-form-container{
+    width: 1140px;
+    margin: 0 auto;
+}
+.bodys-left-container {
+    width: 50%;
+    float: left;
+}
+.bodys-right-container {
+    width: 50%;
+    float: right;
+}
+.bodys-top-text {
+    margin-bottom: 24px;
+}
+.bodys-desc {
+    margin-top: 42px;
+}
+.body-third{
+    width: 1140px;
+    margin: 0 auto;
+}
+.bodyt-some-text {  
+    padding-top: 100px;
+    padding-bottom: 23px;
+}
+.latest-posts-list {
+    margin-top: 48px;
+}
+.post-list-items {
+    margin-right: 10px;
+    float: left;
+    width: 364px;
+    padding-bottom:96px;
+}
+.img-holder{
+    width: 364px;
+    height: 193px;
+    background-image: url(../images/unselected-postlist.png);
+}
+.img-holder:hover {
+    background-image: url(../images/selected-postlist.jpg);
+}
+.posts-texts {
+    margin-top: 19px; 
+}
+.left-calender {
+    float: left;
+    border: 1px solid #dedede;
+    height: 46px;
+    width: 59px;
+    padding-top: 13px;
+}
+.left-calender span {
+    display: block;
+    font-size: 13px;
+}
+.othertexts {
+    float: left;
+    margin-left: 20px;
+    padding-top: 6px;
+    width: 280px;
+}
+.cal-desc {
+    padding-top: 12px;
+}
+.cal-footer {
+    margin-top:20px;
+}
+.body-fourth {
+    background-image: url(../images/back-blacknwhite.jpg);
+    height: 435px;
+    min-width: 1140px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}

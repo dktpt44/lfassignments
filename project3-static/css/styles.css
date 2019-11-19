@@ -1,0 +1,100 @@
+.top-items ul {
+    list-style-type: none;  
+}
+.top-items ul li {
+    float: left;
+    padding-right: 55px;
+}
+.nav-bar ul {
+    list-style-type: none;
+    padding: 40px 0px 32px 0px;
+    
+}
+.nav-bar ul li {
+    display: inline-block;
+    padding-right: 20px;
+}
+.nav-bar ul li a {
+    display: block;
+    color: white;
+    font-size: 13px;
+}
+.nav-bar ul li a:hover {
+    color: yellow;
+}
+.bodyf-some-text p {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+.promo p, .new-item p {
+    color: white;
+    font-size: 11px;
+    text-align: center;
+    line-height: 26px;
+    font-weight: 600;
+}
+
+.collection-from p{
+    color: black;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 600;
+}
+.item-desc p{
+    color: #9c9c9c;
+    font-size: 13px;
+    text-align: center;
+    line-height: 23px;
+}
+.item-price {
+    color: #fac012;
+    font-size: 16px;
+    text-align: center;
+}
+.add-to-cart a {
+    display: block;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    line-height: 54px;
+    font-weight: 600;
+}
+.bodys-top-text p {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+.bodys-desc p{
+    color: white;
+    font-size: 14px;
+}
+.bodyt-some-text p {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+.left-calender p {
+    font-weight: 600;
+    font-size: 21px;
+    text-align:center;
+}
+.calender-toptxt p {
+    font-size: 16px;
+    font-weight: 600;
+}
+.cal-desc ul{
+    list-style-type: none;
+}
+.cal-desc ul li{
+    margin-right: 22px;
+    float: left;
+    font-size: 13px;
+}
+.cal-desc ul li a{
+    color: #fac012;
+}
+.cal-footer p{
+    font-size: 13px;
+    color: #9c9c9c;
+}
