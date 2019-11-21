@@ -1,27 +1,72 @@
-.top-items ul {
-    list-style-type: none;  
-}
+
 .top-items ul li {
     float: left;
     padding-right: 55px;
 }
-.nav-bar ul {
+.top-items ul li:last-child {
+	padding-right: 0;
+}
+.top-items ul li a span {
+    padding: 0px 6px 0px 9px;
+    font-size: 32px;
+    font-family: 'lato';
+    color: #1c1105;
+}
+.ad-box-left p {
+    color: #1c1105;
+    font-size: 26px;
+}
+.top-ad-desc {
+    font-weight: 600;
+    color: #1c1105;
+    margin-top: 2px;
+    font-size: 18px;
+}
+.top-ad-small {
+    color: #1c1105;
+    margin-top: 5px;
+    font-size: 14px;
+}
+.nav-menu-items ul {
     list-style-type: none;
-    padding: 40px 0px 32px 0px;
-    
+    padding: 40px 0px 32px 0px;  
 }
-.nav-bar ul li {
+.nav-menu-items ul li {
     display: inline-block;
-    padding-right: 20px;
+    padding-right: 89px;
 }
-.nav-bar ul li a {
-    display: block;
+.nav-menu-items li a {
     color: white;
     font-size: 13px;
+    font-weight: 600;
 }
-.nav-bar ul li a:hover {
+.nav-menu-items ul li:last-child {
+	padding-right: 0;
+}
+.nav-menu-items li a:hover {
     color: yellow;
 }
+.featured-items ul li{
+    background-image: url(../images/unselected-itembg.jpg);
+    float: left;
+    margin-right: 24px;
+}
+.featured-items ul li:last-child {
+	margin-right: 0;
+}
+.featured-items ul li a{
+    display: block;
+    padding: 33px 33px 157px 33px;
+    width: 298px;
+    color: #1c1105;
+    font-size: 13px;
+    font-weight: bold;
+}
+.featured-items ul li a:hover {
+    background-image: url(../images/selected-itembg.jpg);
+    background-size: cover;  
+}
+
 .bodyf-some-text p {
     text-align: center;
     font-size: 18px;
@@ -68,6 +113,8 @@
 .bodys-desc p{
     color: white;
     font-size: 14px;
+    padding-right: 9px;
+    line-height: 25px;
 }
 .bodyt-some-text p {
     text-align: center;
@@ -83,9 +130,7 @@
     font-size: 16px;
     font-weight: 600;
 }
-.cal-desc ul{
-    list-style-type: none;
-}
+
 .cal-desc ul li{
     margin-right: 22px;
     float: left;
@@ -97,4 +142,125 @@
 .cal-footer p{
     font-size: 13px;
     color: #9c9c9c;
+}
+.fifth-tabs ul li {
+    float: left;
+    border: 1px solid #d5d5d5;
+    width: 118px;
+    margin-right: 14px;
+}
+.fifth-tabs ul li a {
+    display: block;
+    line-height: 38px;
+    text-align: center;
+    font-size: 14px;
+    color: black;
+    font-weight: 600;
+}
+.fifth-tabs ul li a:hover {
+    color: white;
+    background-color: #fac012;
+}
+.fifth-tabs ul li a:hover .fifth-tabs ul li{
+    border: 1px solid #fac012;
+}
+.coll-items-list a p {
+    text-align: center;
+}
+.a-top-txt {
+    font-size: 15px;
+    padding-top: 67px;
+}
+.a-top-price {
+    font-size: 23px;
+    padding-top: 20px;
+}
+.a-bottom-desc {
+    font-size: 14px;
+    line-height: 24px;
+    padding: 20px 36px 59px 36px;
+}
+
+.coll-items-list a:hover {
+    background-color: #fac012;
+    color: white;
+}
+.ci-left p.left-top {
+    font-size: 24px;
+    color: black;
+    font-weight: 600;
+}
+.ci-left p.top-description{
+    font-size: 13px;
+    color: #1c1105;
+    margin-bottom: 52px;
+}
+.contact-headers {
+    margin-top: 52px;
+    font-size: 14px;
+    font-weight: 600;
+}
+.contact-header-desc {
+    margin-top: 24px;
+    line-height: 25px;
+    font-size: 15px;
+}
+.contact-header-desc span {
+    display: block;
+}
+.footer-left-text {
+    color: #52473b;
+    font-size:13px;
+    line-height:27px;
+}
+.some-margin {
+    margin-top: 38px;
+}
+.footer-find-texts{
+    color: #52473b;
+    font-size: 13px;
+}
+.footer-texts a {
+    color: #52473b;
+    font-size: 11px;
+}
+.footer-texts a:hover {
+    color:white;
+}
+.footer-heading-txt {
+    color: white;
+    font-size: 14px;
+    padding-bottom:13px;
+}
+.item-name {
+    color: #4b4034;
+    font-size: 14px;
+}
+
+.footer-product-one a ul li{
+    float: left;
+    margin-right: 1px;
+}
+
+.footer-old-price {
+    color: #5d5144;
+    text-decoration: line-through;
+    font-size: 15px;
+    display: inline-block;
+    padding-top: 16px;
+}
+.footer-new-price {
+    font-size: 17px;
+    color: #cf9e0f;
+    padding-top: 16px;
+    display: inline-block;
+}
+.dummy {
+    color: #1c1105;
+}
+.ending-text p{
+    text-align:center;
+    color: #9a8d7f;
+    margin-top: 31px;
+    font-size: 14px;
 }

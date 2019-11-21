@@ -3,6 +3,9 @@
 	margin: 0px;
 	font-family: Arial;
 }
+ul {
+	list-style-type: none;
+}
 a{
 	text-decoration: none;
 }
@@ -15,4 +18,7 @@ a{
 .clearfix:after {
   clear: both;
 }
+/* * {
+	outline: 1px dotted red;
+} */
 
