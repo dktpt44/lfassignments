@@ -66,6 +66,14 @@
     background-image: url(../images/selected-itembg.jpg);
     background-size: cover;  
 }
+.first-reason a p {
+    color: white;
+    font-size: 14px;
+}
+.second-reason a p {
+    color: white;
+    font-size: 14px;
+}
 
 .bodyf-some-text p {
     text-align: center;
@@ -110,7 +118,7 @@
     font-size: 18px;
     font-weight: 600;
 }
-.bodys-desc p{
+.bodys-desc p, .second-reason-desc p{
     color: white;
     font-size: 14px;
     padding-right: 9px;
@@ -130,7 +138,6 @@
     font-size: 16px;
     font-weight: 600;
 }
-
 .cal-desc ul li{
     margin-right: 22px;
     float: left;
@@ -146,22 +153,23 @@
 .fifth-tabs ul li {
     float: left;
     border: 1px solid #d5d5d5;
-    width: 118px;
-    margin-right: 14px;
+    width: 116px;
+    margin-right: 13px;
 }
 .fifth-tabs ul li a {
     display: block;
     line-height: 38px;
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
     color: black;
     font-weight: 600;
 }
-.fifth-tabs ul li a:hover {
+.fifth-tabs ul li:last-child {
+	margin-right: 0;
+}
+.fifth-tabs ul li:hover {
     color: white;
     background-color: #fac012;
-}
-.fifth-tabs ul li a:hover .fifth-tabs ul li{
     border: 1px solid #fac012;
 }
 .coll-items-list a p {
