@@ -12,10 +12,18 @@ table {
   margin-top: 50px;
    border-collapse: collapse;
 }
+th {
+  font-size: 1.8em;
+}
 
 th, td {
   padding: 11px;
   width: 25%;
   text-align: center;
   border: 1px solid #000;
+}
+a {
+  text-decoration: none;
+  color: blue;
+  font-weight: 600;
 }
