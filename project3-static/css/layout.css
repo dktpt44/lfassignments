@@ -339,7 +339,7 @@
     font-weight: 600;
     opacity: 1; /* Firefox */
 }
-.bodyfour-input input[type=submit], ci-right input[type=submit]{
+.bodyfour-input input[type=submit] {
     display: block;
     margin-top: 40px;
     font-weight: 600;
@@ -407,6 +407,9 @@
 .ci-right form-inline::placeholder {
     color: #cccccc;
     opacity: 1; /* Firefox */
+}
+.ci-right input[type=submit] {
+    
 }
 .main-footer {
     min-width: 1140px;

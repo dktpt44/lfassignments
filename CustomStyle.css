@@ -1,29 +1,36 @@
 body {
-	background-color: #f0f0f0;
-}
-
-
-table {
-  width: 60%;
-  border:2px solid rgb(159, 131, 103);
-  background: url('mountain.jpg');
+  background: url('mountain.jpg'); 
   background-size: cover;
   background-repeat: no-repeat;
+}
+table {
+  margin:0 auto;
+  width: 50%;
+  min-width: 50%;
+  border:1px solid rgb(159, 131, 103);
+  background-color: rgba(255, 255, 255, 0.55);
   margin-top: 50px;
-   border-collapse: collapse;
+  border-collapse: collapse;
 }
 th {
-  font-size: 1.8em;
+  font-size: 1.7em;
+  color: #171717;
+  border-bottom: 1px solid rgb(159, 131, 103);
 }
 
 th, td {
   padding: 11px;
-  width: 25%;
-  text-align: center;
-  border: 1px solid #000;
+  text-align: left;
+}
+td {
+  color: #262626;
+  border: 0ox;
 }
 a {
   text-decoration: none;
-  color: blue;
+  color: #1d54e0;
   font-weight: 600;
+}
+tr:hover td {
+  background-color: rgba(255, 255, 255, 0.6);
 }

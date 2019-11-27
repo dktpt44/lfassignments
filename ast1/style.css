@@ -1,0 +1,66 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+.carousel-container {
+  width: 800px;
+  height: 500px;
+  margin: 30px auto;
+  position: relative;
+  overflow: hidden;
+}
+.carousel-image-wrapper {
+  position: absolute;
+  top: 0px;
+}
+.carousel-image-wrapper img {
+  float: left;
+  margin: 0px;
+}
+.left-button button {
+  width: 40px;
+  height: 40px;
+  display: none;
+  border-radius: 50%;
+  z-index: 2;
+  position: absolute;
+  border: none;
+  top: 46%;
+}
+.right-button button {
+  width: 40px;
+  height: 40px;
+  display: none;
+  border-radius: 50%;
+  z-index: 2;
+  position: absolute;
+  right: 0px;
+  border: none;
+  top: 46%;
+}
+.carousel-container:hover .left-button button {
+  display: block;
+}
+.carousel-container:hover .right-button button {
+  display: block;
+}
+#img-indicators {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: 2px;
+}
+.circle {
+  border-radius: 50%;
+  background-color: #d0d0d0;
+  height: 16px;
+  width: 16px;
+  border: none;
+  margin-right: 10px;
+}
+.bigger-circle {
+  background-color: white;
+  height: 20px;
+  width: 20px;
+}
