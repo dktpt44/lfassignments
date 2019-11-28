@@ -13,7 +13,7 @@ button {
   height: 300px;
   margin: 30px auto;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .carousel-image-wrapper {
   position: absolute;

@@ -1,12 +1,12 @@
 var IMAGE_WIDTH = 500;
 // Transition time is to be given in seconds.
+// Hold time is to be given in seconds.
+var firstImageCarousel = new ImageCarousel(0.5, 3, 0);
+var secondImageCarousel = new ImageCarousel(0.2, 2, 1);
 
-var firstImageCarousel = new ImageCarousel(0.5, 0);
-var secondImageCarousel = new ImageCarousel(2, 1);
-
-function ImageCarousel(transitionTime, cIndex) {
+function ImageCarousel(transitionTime, holdTime, cIndex) {
   this.transitionTime = transitionTime;
-
+  this.holdTime = holdTime;
   this.cIndex = cIndex;
   var incrementByX = IMAGE_WIDTH/(this.transitionTime*100);
   var currentImgIndex = 1;
@@ -55,12 +55,24 @@ function ImageCarousel(transitionTime, cIndex) {
   }
   var listOfButtons = carouselContainer.getElementsByClassName('circle');
   changeCircle();
+  var globalInterval = null;
+  function globalAnimate(flag){
+    if(flag){
+      globalInterval = setInterval(function(){
+        moveRight();
+      },holdTime*1000);
+    } else {
+      clearInterval(globalInterval);
+    }
+  }
+ 
 
   function moveLeft() {
     var currentLeft = parseInt(carouselWrapper.style.left);
     if ((currentLeft % IMAGE_WIDTH) != 0) {
       return;
     }
+    globalAnimate(false);
     var newLeft = currentLeft + IMAGE_WIDTH;
     if (currentLeft == 0) {
       currentImgIndex = totalNumberOfImages + 1;
@@ -72,6 +84,7 @@ function ImageCarousel(transitionTime, cIndex) {
           carouselWrapper.style.left = newLeft + 'px';     
           changeCircle();
           clearInterval(dummyid);
+          globalAnimate(true);
         }
       }, 10)
     } else {
@@ -82,6 +95,7 @@ function ImageCarousel(transitionTime, cIndex) {
           carouselWrapper.style.left = newLeft + 'px';
           changeCircle();
           clearInterval(dummyid);
+          globalAnimate(true);
         }
       }, 10)
     }
@@ -93,6 +107,7 @@ function ImageCarousel(transitionTime, cIndex) {
     if ((currentLeft % IMAGE_WIDTH) != 0) {
       return;
     }
+    globalAnimate(false);
     var newLeft = currentLeft - IMAGE_WIDTH;
     if (currentImgIndex == totalNumberOfImages) {
       currentImgIndex = 0;
@@ -104,6 +119,7 @@ function ImageCarousel(transitionTime, cIndex) {
           carouselWrapper.style.left = newLeft + 'px';
           changeCircle();
           clearInterval(dummyid);
+          globalAnimate(true);
         }
       }, 10)
     } else {
@@ -114,6 +130,7 @@ function ImageCarousel(transitionTime, cIndex) {
           carouselWrapper.style.left = newLeft + 'px';
           changeCircle();
           clearInterval(dummyid);
+          globalAnimate(true);
         }
 
       }, 10);
@@ -152,6 +169,7 @@ function ImageCarousel(transitionTime, cIndex) {
     if (oldIndex == currentImgIndex) {
       return;
     } else if (currentImgIndex < oldIndex) {
+      globalAnimate(false);
       var leftIncrement = (oldIndex - currentImgIndex) * 20;
       var currentLeft = parseInt(carouselWrapper.style.left);
       var newLeft = -(currentImgIndex - 1) * IMAGE_WIDTH;
@@ -161,9 +179,11 @@ function ImageCarousel(transitionTime, cIndex) {
         if (currentLeft >= newLeft) {
           carouselWrapper.style.left = newLeft + 'px';
           clearInterval(dummyid);
+          globalAnimate(true);
         }
       }, 10);
     } else {
+      globalAnimate(false);
       var rightIncrement = (currentImgIndex - oldIndex) * 20;
       var currentRight = parseInt(carouselWrapper.style.left);
       var newRight = -(currentImgIndex - 1) * IMAGE_WIDTH;
@@ -173,12 +193,14 @@ function ImageCarousel(transitionTime, cIndex) {
         if (currentRight <= newRight) {
         carouselWrapper.style.left = newRight + 'px';
           clearInterval(dummyid);
+          globalAnimate(true);
         }
       }, 10);
     }
 
   }
-  
+  globalAnimate(true);
+
 
 }
 
