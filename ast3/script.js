@@ -3,7 +3,7 @@ var boxcolors = ["#e44242", "#e44277", "#f82be7", "#872bf8", "#2b3ef8", "#2bf8ec
 //because a new ball here is made on a free space, so that it will not overlap the old one
 //generating large number of balls, will result in empty free spaces.
 var firstBallCollision = new boxCollision(5, 0, boxcolors).init();
-var secondBallCollision = new boxCollision(15, 1, boxcolors).init();
+var secondBallCollision = new boxCollision(20, 1, boxcolors).init();
 
 function boxCollision(ballCount, cIndex, boxColors) {
   this.ballCount = ballCount;
@@ -189,8 +189,8 @@ function antSmasher(antCount, cIndex) {
 
   this.assignVelocities = function () {
     for (var i = 0; i < this.antCount; i++) {
-      velocityX[i] = getRandomNum(-8, 8);
-      velocityY[i] = getRandomNum(-8, 8);
+      velocityX[i] = getRandomNum(-7, 7);
+      velocityY[i] = getRandomNum(-7, 7);
     }
   }
 
@@ -241,7 +241,7 @@ function antSmasher(antCount, cIndex) {
   }
 
   this.moveAnts = function () {
-    setInterval(changexy, 25);
+    setInterval(changexy, 50);
   }
 
 
