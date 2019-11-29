@@ -1,0 +1,44 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+.main-box {
+  width: 504px;
+  height: 504px;
+  border: 2px solid red;
+  margin: 50px;
+  position: relative;
+}
+.small-boxes {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 2;
+}
+.box-collision {
+  overflow: auto;
+  width: 1240px;
+  margin: 0 auto;
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.ant-smasher {
+  width: 800px;
+  height: 600px;
+  border: 2px solid red;
+  margin: 50px auto;
+  position: relative;
+}
+.ants {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  z-index: 2;
+}
+.ants img {
+  width: 50px;
+  height: 50px;
+}
