@@ -3,6 +3,17 @@
   margin: 0px;
   box-sizing: border-box;
 }
+.two-games {
+  width: 1050px;
+  margin: 20px auto;
+  overflow: auto;
+}
+.game-left {
+  float: left;
+}
+.game-right {
+  float: right;
+}
 .score-sheet h3 {
   padding-left: 40px;
   display: inline-block;
@@ -16,7 +27,6 @@
   font-size: 19px;
 }
 .car-lane-game {
-  margin: 20px auto;
   width: 500px;
 }
 .score-sheet {
@@ -36,13 +46,33 @@
 }
 .play-button {
   display: block;
-  width: 80px;
-  height: 80px;
+  cursor: pointer;
+  width: 55px;
+  height: 55px;
   position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform: translate(-50%,0);
+  bottom: 4%;
+  right: 4%;
   border-radius: 50%;
+}
+.play-button:hover {
+  width: 65px;
+  height: 65px;
+  transform: translate(5px,5px);
+}
+.instr-button {
+  display: block;
+  cursor: pointer;
+  width: 55px;
+  height: 55px;
+  position: absolute;
+  bottom: 4%;
+  left: 4%;
+  border-radius: 50%;
+}
+.instr-button:hover {
+  width: 65px;
+  height: 65px;
+  transform: translate(-5px,5px);
 }
 .game-text {
   font-size: 42px;
@@ -53,4 +83,42 @@
   color: #ff4d00;
   font-weight: bold;
   text-shadow: 2px 1px black;
+}
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 400px;
+  height: 400px;
+  overflow: auto;
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.stylep {
+  font-size: 14px;
+  color: #ff4d00;
 }
