@@ -262,8 +262,8 @@ function game(cIndex, moveUpKey, storageKey, instructions) {
     if (pressedKey == this.moveUpKey) {
       this.spaceAlreadyPressed = true;
       var finalPos = this.myBird.topX - this.jumpValue;
-      if (finalPos <= -200) {
-        finalPos = -200;
+      if (finalPos <= -50) {
+        finalPos = -50;
       }
       clearInterval(this.gravityInterval);
       this.angleHolder = 0;
