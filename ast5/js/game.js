@@ -29,8 +29,8 @@ function game(cIndex, moveUpKey, storageKey, instructions) {
   this.downPipes = [];
   this.backgroundPosX = 0;
   this.myBird;
-  this.jumpValue = 90;
-  this.pipeGap = 160;
+  this.jumpValue = 88;
+  this.pipeGap = 170;
   this.distBtwnPipes = 0;
   this.spaceAlreadyPressed = false;
 
@@ -262,8 +262,8 @@ function game(cIndex, moveUpKey, storageKey, instructions) {
     if (pressedKey == this.moveUpKey) {
       this.spaceAlreadyPressed = true;
       var finalPos = this.myBird.topX - this.jumpValue;
-      if (finalPos <= -50) {
-        finalPos = -50;
+      if (finalPos <= -200) {
+        finalPos = -200;
       }
       clearInterval(this.gravityInterval);
       this.angleHolder = 0;
