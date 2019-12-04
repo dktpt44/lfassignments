@@ -277,7 +277,7 @@ function game(cIndex, moveUpKey, storageKey, instructions) {
           clearInterval(jumpInterval);
           this.gravityInterval = setInterval(this.gravityY.bind(this), 10);
         } else {
-          this.myBird.topX -= 10;
+          this.myBird.topX -= 8;
           this.myBird.moveBird();
         }
       }
