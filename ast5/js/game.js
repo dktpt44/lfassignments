@@ -29,6 +29,7 @@ function game(cIndex, moveUpKey) {
   this.jumpValue = 80;
   this.pipeGap = 180;
   this.distBtwnPipes = 0;
+  this.spaceAlreadyPressed = false;
 
   this.init = function () {
     this.gameContainer = document.getElementsByClassName('game-container')[this.cIndex];
@@ -231,9 +232,10 @@ function game(cIndex, moveUpKey) {
   }
   this.jumpBird = function () {
     var pressedKey = event.keyCode;
-    if (this.gamestate != 'running') {
+    if (this.gamestate != 'running' || this.spaceAlreadyPressed) {
       return;
     }
+    this.spaceAlreadyPressed = true;
     this.birdVelocity = 1.5;
     this.birdAcclrn = 0.02;
     if (pressedKey == this.moveUpKey) {
@@ -249,6 +251,7 @@ function game(cIndex, moveUpKey) {
       function startJump() {
 
         if (this.myBird.topX <= finalPos) {
+          this.spaceAlreadyPressed = false;
           clearInterval(jumpInterval);
           this.gravityInterval = setInterval(this.gravityY.bind(this), 10);
         } else {
