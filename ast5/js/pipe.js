@@ -16,9 +16,6 @@ function Pipe(parentElem, top, imgSource){
       this.pipe.style.top = this.top + 'px';
       this.pipe.style.right = this.right + 'px';
       this.pipe.style.background = this.imgSource;
-      if(this.top == 0){
-          this.pipe.style.backgroundPosition = 'bottom';
-      }
       this.parentElem.appendChild(this.pipe);
       return this;
   }
