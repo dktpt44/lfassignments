@@ -20,6 +20,7 @@ function game(cIndex, moveUpKey) {
   this.highScore = 0;
   this.initialPause = 0;
   this.gameInterval;
+  this.imgCounter = 1;
   //this.pipes[][] = null;
   this.upPipes = [];
   this.downPipes = [];
@@ -57,7 +58,6 @@ function game(cIndex, moveUpKey) {
         this.scoreContainer.style.zIndex = '2'
         this.scoreContainer.innerHTML = this.gameScore;
         this.gameContainer.appendChild(this.scoreContainer);
-
       }
     }
   }
@@ -82,10 +82,22 @@ function game(cIndex, moveUpKey) {
 
   this.moveGame = function () {
     this.moveBackground();
+    this.imgCounter++;
+    if(this.imgCounter<8){
+      this.myBird.changeImg('url(images/bird1.png)');
+    } else if(this.imgCounter<16){
+      this.myBird.changeImg('url(images/bird2.png)');
+    } else if(this.imgCounter<24){
+      this.myBird.changeImg('url(images/bird3.png)'); 
+    } else if(this.imgCounter>32){
+      this.myBird.changeImg('url(images/bird1.png)');
+      this.imgCounter=1
+    }
     if (this.initialPause < 150) {
       this.initialPause++;
       return;
     }
+
     for (var pipeIndex = 0; pipeIndex < this.upPipes.length; pipeIndex++) {
       var nextUpPipe = this.upPipes[pipeIndex];
       var nextDownPipe = this.downPipes[pipeIndex];
@@ -131,7 +143,6 @@ function game(cIndex, moveUpKey) {
         this.upPipes.splice(pipeIndex, 1);
         this.downPipes.splice(pipeIndex, 1);
       }
-
 
 
     }

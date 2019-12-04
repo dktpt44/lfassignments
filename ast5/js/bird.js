@@ -18,6 +18,9 @@ function bird(parElem) {
     this.parElem.appendChild(this.bird);
     return this;
   }
+  this.changeImg = function(imgx) {
+    this.bird.style.background = imgx;
+  }
   this.moveBird = function () {
     this.bird.style.top = this.topX + 'px';
   }
