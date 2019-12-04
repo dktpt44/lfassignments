@@ -209,7 +209,6 @@ function game(cIndex, moveUpKey, storageKey, instructions) {
     this.gameContainer.appendChild(scContainer);
 
 
-
     var scContainer2 = document.createElement('p');
     scContainer2.classList.add('score');
     scContainer2.style.position = 'absolute';
@@ -257,10 +256,11 @@ function game(cIndex, moveUpKey, storageKey, instructions) {
     if (this.gamestate != 'running' || this.spaceAlreadyPressed) {
       return;
     }
-    this.spaceAlreadyPressed = true;
+ 
     this.birdVelocity = 1.5;
     this.birdAcclrn = 0.02;
     if (pressedKey == this.moveUpKey) {
+      this.spaceAlreadyPressed = true;
       var finalPos = this.myBird.topX - this.jumpValue;
       if (finalPos <= -200) {
         finalPos = -200;
