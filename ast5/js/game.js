@@ -1,10 +1,12 @@
-var game1 = new game(0).init();
+var game1 = new game(0,32).init();
+var game2 = new game(1,38).init();
 
-function game(cIndex) {
+function game(cIndex, moveUpKey) {
   this.gameContainer;
   this.containerHeight = 600;
   this.containerWidth = 500;
   this.movingBackground;
+  this.moveUpKey = moveUpKey;
   this.cIndex = cIndex;
   this.gamestate = 'paused';
   this.birdAcclrn = 0.02;
@@ -39,7 +41,7 @@ function game(cIndex) {
       if (this.gamestate != 'paused') {
         return;
       }
-      if (pressedKey == 32) {
+      if (pressedKey == this.moveUpKey) {
         this.gravityInterval = setInterval(this.gravityY.bind(this), 10);
         this.gameInterval = setInterval(this.moveGame.bind(this), 10);
         document.addEventListener('keydown', this.jumpBird.bind(this));
@@ -203,7 +205,12 @@ function game(cIndex) {
       this.gameContainer.removeChild(scContainer);
       this.gameContainer.removeChild(scContainer2);
       this.gameContainer.removeChild(fScoreContainer);
-      var x = new game(this.cIndex).init();
+      this.myBird.removeBird();
+      for(var ix = 0; ix<this.upPipes.length; ix++) {
+        this.upPipes[ix].removePipe();
+        this.downPipes[ix].removePipe();
+      }
+      var x = new game(this.cIndex,this.moveUpKey).init();
     }
   }
   function getRandomTop() {
@@ -218,7 +225,7 @@ function game(cIndex) {
     }
     this.birdVelocity = 1.5;
     this.birdAcclrn = 0.02;
-    if (pressedKey == 32) {
+    if (pressedKey == this.moveUpKey) {
       var finalPos = this.myBird.topX - this.jumpValue;
       if (finalPos <= -200) {
         finalPos = -200;

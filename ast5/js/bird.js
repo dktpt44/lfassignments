@@ -24,5 +24,8 @@ function bird(parElem) {
   this.changeAngle = function () {
     this.bird.style.transform = 'rotate(' + this.angle + 'deg)';
   }
+  this.removeBird = function() {
+    this.parElem.removeChild(this.bird);
+  }
 
 }

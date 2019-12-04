@@ -3,8 +3,19 @@
   margin: 0px;
   box-sizing: border-box;
 }
+.main-cont {
+  margin: 30px auto;
+  overflow: auto;
+  width: 1050px;
+}
+.flappy-left {
+  float: left;
+}
+.flappy-right {
+  float: right;
+}
 .flappy-bird {
-  margin: 30px auto  ;
+
   width: 500px;
   height: 700px;
 }
