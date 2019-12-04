@@ -1,8 +1,9 @@
-var game1 = new game(0,32).init();
-var game2 = new game(1,38).init();
+var game1 = new game(0,32,'gameOneHS').init();
+var game2 = new game(1,38,'gameTwoHS').init();
 
-function game(cIndex, moveUpKey) {
+function game(cIndex, moveUpKey, storageKey) {
   this.gameContainer;
+  this.storageKey = storageKey;
   this.containerHeight = 600;
   this.containerWidth = 500;
   this.movingBackground;
@@ -36,7 +37,10 @@ function game(cIndex, moveUpKey) {
     this.movingBackground = document.getElementsByClassName('motion-bg')[this.cIndex];
     this.myBird = new bird(this.gameContainer).init();
     this.gamestate = 'paused';
-    this.highScore = window.localStorage.getItem('highScore');
+    this.highScore = window.localStorage.getItem(this.storageKey);
+    if(this.highScore==null || this.highScore == undefined) {
+      this.highScore = 0;
+    }
     document.addEventListener('keydown', startG.bind(this));
     function startG() {
       var pressedKey = event.keyCode;
@@ -126,7 +130,7 @@ function game(cIndex, moveUpKey) {
         this.birdVelocity = 4;
         if (this.gameScore > this.highScore) {
           this.highScore = this.gameScore;
-          window.localStorage.setItem('highScore', this.highScore)
+          window.localStorage.setItem(this.storageKey, this.highScore)
         }
         this.showStoppedScreen().bind(this);
       }
