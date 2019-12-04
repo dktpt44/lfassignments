@@ -1,8 +1,9 @@
-var game1 = new game(0,32,'gameOneHS').init();
-var game2 = new game(1,38,'gameTwoHS').init();
+var game1 = new game(0, 32, 'gameOneHS','Press \'space\' to start').init();
+var game2 = new game(1, 38, 'gameTwoHS', 'Press \'Up arrow\' to start').init();
 
-function game(cIndex, moveUpKey, storageKey) {
+function game(cIndex, moveUpKey, storageKey, instructions) {
   this.gameContainer;
+  this.instructions = instructions;
   this.storageKey = storageKey;
   this.containerHeight = 600;
   this.containerWidth = 500;
@@ -18,6 +19,7 @@ function game(cIndex, moveUpKey, storageKey) {
   this.angleHolder = 0;
   this.gameScore = 0;
   this.scoreContainer;
+  this.instructionContainer;
   this.highScore = 0;
   this.initialPause = 0;
   this.gameInterval;
@@ -27,8 +29,8 @@ function game(cIndex, moveUpKey, storageKey) {
   this.downPipes = [];
   this.backgroundPosX = 0;
   this.myBird;
-  this.jumpValue = 80;
-  this.pipeGap = 180;
+  this.jumpValue = 90;
+  this.pipeGap = 160;
   this.distBtwnPipes = 0;
   this.spaceAlreadyPressed = false;
 
@@ -37,8 +39,9 @@ function game(cIndex, moveUpKey, storageKey) {
     this.movingBackground = document.getElementsByClassName('motion-bg')[this.cIndex];
     this.myBird = new bird(this.gameContainer).init();
     this.gamestate = 'paused';
+    this.showInstructions();
     this.highScore = window.localStorage.getItem(this.storageKey);
-    if(this.highScore==null || this.highScore == undefined) {
+    if (this.highScore == null || this.highScore == undefined) {
       this.highScore = 0;
     }
     document.addEventListener('keydown', startG.bind(this));
@@ -50,6 +53,7 @@ function game(cIndex, moveUpKey, storageKey) {
       if (pressedKey == this.moveUpKey) {
         this.gravityInterval = setInterval(this.gravityY.bind(this), 10);
         this.gameInterval = setInterval(this.moveGame.bind(this), 10);
+        this.gameContainer.removeChild(this.instructionContainer);
         document.addEventListener('keydown', this.jumpBird.bind(this));
         this.gamestate = 'running';
         this.scoreContainer = document.createElement('p');
@@ -65,6 +69,20 @@ function game(cIndex, moveUpKey, storageKey) {
         this.gameContainer.appendChild(this.scoreContainer);
       }
     }
+  }
+  this.showInstructions = function () {
+    this.instructionContainer = document.createElement('p');
+    this.instructionContainer.classList.add('instr');
+    this.instructionContainer.style.position = 'absolute';
+    this.instructionContainer.style.top = '62%';
+    this.instructionContainer.style.left = '22%';
+    this.instructionContainer.style.fontFamily = 'myFont';
+    this.instructionContainer.style.fontSize = '20px';
+    this.instructionContainer.style.fill = '#fff';
+    this.instructionContainer.style.zIndex = '2'
+    this.instructionContainer.innerHTML = this.instructions;
+    this.gameContainer.appendChild(this.instructionContainer);
+
   }
 
   this.gravityY = function () {
@@ -88,15 +106,15 @@ function game(cIndex, moveUpKey, storageKey) {
   this.moveGame = function () {
     this.moveBackground();
     this.imgCounter++;
-    if(this.imgCounter<8){
+    if (this.imgCounter < 8) {
       this.myBird.changeImg('url(images/bird1.png)');
-    } else if(this.imgCounter<16){
+    } else if (this.imgCounter < 16) {
       this.myBird.changeImg('url(images/bird2.png)');
-    } else if(this.imgCounter<24){
-      this.myBird.changeImg('url(images/bird3.png)'); 
-    } else if(this.imgCounter>32){
+    } else if (this.imgCounter < 24) {
+      this.myBird.changeImg('url(images/bird3.png)');
+    } else if (this.imgCounter > 32) {
       this.myBird.changeImg('url(images/bird1.png)');
-      this.imgCounter=1
+      this.imgCounter = 1
     }
     if (this.initialPause < 150) {
       this.initialPause++;
@@ -222,11 +240,11 @@ function game(cIndex, moveUpKey, storageKey) {
       this.gameContainer.removeChild(scContainer2);
       this.gameContainer.removeChild(fScoreContainer);
       this.myBird.removeBird();
-      for(var ix = 0; ix<this.upPipes.length; ix++) {
+      for (var ix = 0; ix < this.upPipes.length; ix++) {
         this.upPipes[ix].removePipe();
         this.downPipes[ix].removePipe();
       }
-      var x = new game(this.cIndex,this.moveUpKey).init();
+      var x = new game(this.cIndex, this.moveUpKey,this.storageKey, this.instructions).init();
     }
   }
   function getRandomTop() {
