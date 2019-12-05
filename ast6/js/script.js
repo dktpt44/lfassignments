@@ -61,6 +61,7 @@ function helixAnim(){
         newBall.left=this.minLeft+i*this.columnGap+i*this.maxBallWH+(this.nextBallDown-wid)/2;
         newBall.top=this.moveDownDist+this.minTop+j*this.nextBallDown+25*Math.sin((newBall.left-this.minLeft)/80+(Math.PI/2));
         newBall.init();
+        // newBall.style.backgroundColor='red';
         this.ballsArray2[j][i] = newBall;
       }
     }
@@ -93,7 +94,7 @@ function helixAnim(){
         thisBall2.move();
         if(thisBall2.top>=this.newBotTop){
           thisBall2.movingup = true;
-        } else if(thisBall2.top<=this.newBotTop-this.movingDist-j*this.maxBallWH){
+        } else if(thisBall2.top<=this.newBotTop-this.movingDist-(this.rows-j)*this.maxBallWH){
           thisBall2.movingup = false;
         }
       }
