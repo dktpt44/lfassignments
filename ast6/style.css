@@ -1,0 +1,10 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+.helix-anim {
+  margin: 30px auto;
+  position: relative;
+  border: 1px solid red;
+}
