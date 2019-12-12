@@ -1,0 +1,19 @@
+.outer-container {
+  width: 100vw;
+  height: 700px;
+  background-image: url(../images/background.jpg);
+  background-size: cover;
+}
+.map-container {
+  width: 500px;
+  margin: 0 auto;
+  height: 700px;
+
+}
+.path-container {
+  width: 500px;
+  height: 700px;
+  position: relative;
+  overflow: hidden;
+  bottom: 0;
+}
