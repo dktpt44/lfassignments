@@ -1,5 +1,5 @@
 class Map {
-  constructor(parElem,bottomPos,leftPos, width,height) {
+  constructor(parElem,bottomPos,leftPos, width,height,isObstacle,obsT) {
     this.mapElement;
     this.width=width;
     this.height=height;
@@ -7,6 +7,9 @@ class Map {
     this.bottom=bottomPos;
     this.parElem=parElem;
     this.mapImage;
+    this.src = 'images/small.png';
+    this.isObstacle = isObstacle;
+    this.obstacleType = obsT;
     this.makeMapImg();
   }
   makeMapImg = function() {
@@ -20,7 +23,16 @@ class Map {
     this.mapImage = document.createElement('img');
     this.mapImage.style.width=this.width+'px';
     this.mapImage.style.height=this.height+'px';
-    this.mapImage.setAttribute('src','images/small.png');
+    if(this.isObstacle){
+      if(this.obstacleType=='left'){
+        this.src='images/obstaclel.png';
+      } else if (this.obstacleType=='right'){
+        this.src='images/obstacler.png';
+      } else {
+        this.src='images/obstacle1.png';
+      }
+    }
+    this.mapImage.setAttribute('src',this.src);
     this.mapElement.appendChild(this.mapImage);
   }
   setMapAttrs = function (wid,hei,left,bot) {

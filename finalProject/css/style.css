@@ -1,18 +1,23 @@
 .outer-container {
   width: 100vw;
-  height: 700px;
-  background-image: url(../images/background.jpg);
-  background-size: cover;
+  background-color: black;
+  height: 100vh;
 }
 .map-container {
-  width: 500px;
+  background-image: url(../images/back.jpg);
+  width: 650px;
   margin: 0 auto;
-  height: 700px;
-}
-.path-container {
-  width: 500px;
-  height: 700px;
+  border: 3px solid orange;
+  border-radius: 2%;
   position: relative;
   overflow: hidden;
+  height: 750px;
+}
+.path-container {
+  width: 650px;
+  margin-top: 388px;
+  position: relative;
+  overflow: hidden;
+  height: 356px;
   bottom: 0;
 }
