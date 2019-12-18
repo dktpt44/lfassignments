@@ -6,6 +6,7 @@ class Map {
     this.left=leftPos;
     this.bottom=bottomPos;
     this.parElem=parElem;
+    this.isThisChecked=false;
     this.mapImage;
     this.src = 'images/small.png';
     this.isObstacle = isObstacle;
@@ -49,6 +50,12 @@ class Map {
     this.mapElement.style.bottom=this.bottom+'px';
     this.mapElement.style.left=this.left+'px';
   }
+  get isChecked() {
+    return isThisChecked;
+  }
+  set isChecked(bolVal){
+    this.isThisChecked = bolVal;
+  }
   get botPos() {
     return this.bottom;
   }
@@ -60,6 +67,9 @@ class Map {
   }
   get getH() {
     return this.height;
+  }
+  get getObstacleType() {
+    return this.obstacleType;
   }
   removeMap = function() {
     this.parElem.removeChild(this.mapElement);

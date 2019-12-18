@@ -6,6 +6,7 @@ class Player {
     this.left = 290;
     this.bottom = 20;
     this.midPos = 290;
+    this.curLeftVal = this.left;
     this.parElem = parElem;
     this.playerImage;
     this.makeplayerImg();
@@ -13,14 +14,7 @@ class Player {
     this.lane;
     this.animInterval;
     this.isInAir;
-    this.jumpHeight = 200;
-  }
-  changeWid = function (widVal,leftVal) {
-    this.left = leftVal;
-    this.playerElement.style.left = this.left + 'px';
-    this.width = widVal;
-    this.playerElement.style.width = this.width + 'px';
-    this.playerImage.style.width = this.width + 'px';
+    this.jumpHeight = 220;
   }
   makeplayerImg = function () {
     this.playerElement = document.createElement('div');
@@ -39,7 +33,18 @@ class Player {
   changeImg = function (srcImg) {
     this.playerImage.setAttribute('src', srcImg);
   }
+  changeWid = function (widVal,leftVal) {
+    this.left = leftVal;
+    this.playerElement.style.left = this.left + 'px';
+    this.width = widVal;
+    this.playerElement.style.width = this.width + 'px';
+    this.playerImage.style.width = this.width + 'px';
+  }
+  get botPos(){
+    return this.bottom;
+  }
   jumpInAir = function () {
+    var incrfirst = true;
     var newPos = this.bottom + this.jumpHeight;
     var indx = 1;
     var timeout = 0;
@@ -47,21 +52,23 @@ class Player {
     function startAnim() {
       if (this.bottom > newPos) {
         clearInterval(jumpInterval);
+        this.changeWid(75,this.left);
         this.jumpDown();
       } else {
         if (timeout % 4 == 0) {
           timeout = 0;
           if(indx==2){
-            this.changeWid(90);
+            this.changeWid(95,this.left-4);
           } else if(indx==3){
-            this.changeWid(100,285);
+            this.changeWid(100,this.left-10);
           } else if(indx==4){
-            this.changeWid(105,275);
+            this.changeWid(105,this.left-10);
           } 
           this.changeImg('images/up/' + indx + '.png')
           indx++;
-          if (indx > 5) {
-            this.changeWid(65,this.midPos);
+          if (indx > 5 && incrfirst) {
+            incrfirst=false;
+            this.changeWid(75,this.left+24);
             indx = 5;
           }  
         }
@@ -71,7 +78,9 @@ class Player {
       }
     }
   }
+  
   jumpDown = function () {
+    var incrfirst= true;
     var newPos = 20;
     var indx = 5;
     var timeout = 0;
@@ -79,21 +88,22 @@ class Player {
     function startAnim() {
       if (this.bottom < newPos) {
         this.isInAir = false;
-        this.changeWid(75,this.midPos);
+        this.changeWid(75,this.left+4);
         clearInterval(jumpInterval);
       } else {
         if (timeout % 10 == 0) {
           timeout = 0;
         if(indx==3){
-          this.changeWid(110,285);
+          this.changeWid(110,this.left+10);
         } else if(indx==4){
-          this.changeWid(120,275);
+          this.changeWid(120,this.left-24);
         } 
           this.changeImg('images/up/' + indx + '.png')
           indx--;
-          if (indx < 2) {
+          if (indx < 2 && incrfirst) {
+            incrfirst=false;
             indx =2;
-            this.changeWid(90);
+            this.changeWid(96,this.left+10);
           }  
         }
         timeout++;
@@ -112,12 +122,15 @@ class Player {
         this.isMovingLR = false;
         this.lane = 'left';
       } else {
-        this.left -= 6;
+        this.left -= 8;
         this.playerElement.style.left = this.left + 'px';
       }
     }
   }
   moveRightGravity = function () {
+    if(this.left > this.midPos){
+      return;
+    }
     var newPos = this.midPos;
     clearInterval(this.animInterval);
     this.animInterval = setInterval(startAnim.bind(this), 10);
@@ -128,12 +141,15 @@ class Player {
         this.isMovingLR = false;
         this.lane = 'center';
       } else {
-        this.left += 6;
+        this.left += 8;
         this.playerElement.style.left = this.left + 'px';
       }
     }
   }
   moveLeftGravity = function () {
+    if(this.left < this.midPos){
+      return;
+    }
     var newPos = this.midPos;
     clearInterval(this.animInterval);
     this.animInterval = setInterval(startAnim.bind(this), 10);
@@ -145,7 +161,7 @@ class Player {
         this.lane = 'center';
 
       } else {
-        this.left -= 6;
+        this.left -= 8;
         this.playerElement.style.left = this.left + 'px';
       }
     }
@@ -161,7 +177,7 @@ class Player {
         this.lane = 'right';
 
       } else {
-        this.left += 6;
+        this.left += 8;
         this.playerElement.style.left = this.left + 'px';
       }
     }
