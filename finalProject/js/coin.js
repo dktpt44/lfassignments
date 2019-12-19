@@ -12,18 +12,28 @@ class Coin {
     this.lane;
   }
   makecoinImg = function () {
-    this.coinElement = document.createElement('div');
-    this.coinElement.style.width = this.width + 'px';
-    this.coinElement.style.height = this.height + 'px';
+    this.coinElement = document.createElement('div'); 
     this.coinElement.style.position = 'absolute';
-    this.coinElement.style.zIndex = '2';
-    this.coinElement.style.bottom = this.bottom + 'px';
-    this.coinElement.style.left = this.left + 'px';
+    this.coinElement.style.zIndex = '2';  
     this.parElem.appendChild(this.coinElement);
     this.coinImage = document.createElement('img');
+    this.coinElement.appendChild(this.coinImage);
+    this.moveCoin();
+  }
+  changePos(wid,hei,bot,lef){
+    this.width=wid;
+    this.height=hei;
+    this.bottom = bot;
+    this.left=lef;
+    this.moveCoin();
+  }
+  moveCoin = function () {
+    this.coinElement.style.width = this.width + 'px';
+    this.coinElement.style.height = this.height + 'px';
+    this.coinElement.style.bottom = this.bottom + 'px';
+    this.coinElement.style.left = this.left + 'px';
     this.coinImage.style.width = this.width + 'px';
     this.coinImage.style.height = this.height + 'px';
-    this.coinElement.appendChild(this.coinImage);
   }
   changeImg = function (srcImg) {
     this.coinImage.setAttribute('src', srcImg);

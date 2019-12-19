@@ -27,11 +27,18 @@ class Game {
     this.timeframe;
     this.gameInterval;
     this.start();
+    // this.showGameScreen();
+  }
+  showGameScreen = function (){
+    this.mapContainer.style.backgroundImage = 'url(images/front.png)';
+    this.mapContainer.removeChild(this.pathContainer);
+    var playButton=document.createElement('button');
+    playButton.classList.add('play-button');
+    // playButton.addEventListener('onclick',this.start().bind(this));
   }
 
   start = function () {
     this.player = new Player(this.mapContainer);
-    this.player.changeImg('images/run/' + this.playerIndex + '.png');
     this.player.isInAir = false;
     this.player.isMovingLR = false;
     this.player.lane = 'center';
@@ -111,11 +118,11 @@ class Game {
       this.changeLate++;
       if (this.changeLate % 5 == 0) {
         this.changeLate = 0;
-        if (this.playerIndex == 12) {
+        if (this.playerIndex == 11) {
           this.playerIndex = 0;
         }
         this.playerIndex++;
-        this.player.changeImg('images/run/' + this.playerIndex + '.png');
+        this.player.changeImg(this.playerIndex);
       }
     }
     //moving map
@@ -165,9 +172,6 @@ class Game {
             this.showWarning('died');
           }
         }
-      }
-      if (this.gameState == 'over') {
-        this.player.changeImg('images/run/5.png')
       }
     }
   }
