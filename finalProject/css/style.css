@@ -7,7 +7,6 @@
   outline: 2px solid red;
 } */
 .map-container {
-  background-image: url(../images/back.jpg);
   width: 650px;
   margin: 0 auto;
   border: 3px solid orange;
@@ -36,7 +35,117 @@
 }
 .play-button {
   position: absolute;
-  width: 50px;
-  height: 50px;
-  bottom: 20px;
+  border: none;
+  cursor: pointer;
+  width: 180px;
+  height: 65px;
+  left: 220px;
+  bottom: 180px;
+}
+.scoretxt {
+  background-image: url(../images/scorebg.png);
+  background-size: 100% 100%;
+  position: absolute;
+  right: 0px;
+  padding: 6px 20px 6px 6px;
+  top: 0px;
+  height: 42px;
+  min-width: 100px;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: right;
+  color: yellow;
+}
+.cointxt {
+  background-image: url(../images/coinbg.png);
+  background-size: 100% 100%;
+  position: absolute;
+  right: 0px;
+  padding: 8px 40px 6px 6px;
+  top: 42px;
+  min-width: 120px;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: right;
+  color: yellow;
+}
+.highscoretxt {
+  background-image: url(../images/highbg.png);
+  background-size: 100% 100%;
+  position: absolute;
+  left: 0px;
+  padding: 15px 55px 15px 5px;
+  bottom: 0px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: left;
+  color: white;
+}
+.totalcoinstxt {
+  background-image: url(../images/coinbg.png);
+  background-size: 100% 100%;
+  position: absolute;
+  right: 0px;
+  padding: 15px 65px 15px 45px;
+  bottom: 0px;
+  border-radius: 3px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: left;
+  color: white;
+}
+
+* {
+  text-shadow:
+     1.5px  1.5px 0 #000,
+    -1.5px -1.5px 0 #000,  
+    1.5px -1.5px 0 #000,
+    -1.5px  1.5px 0 #000,
+    1.5px  1.5px 0 #000;
+}
+.restart-diag {
+  position: absolute;
+  background-color: yellowgreen;
+  padding: 5px;
+  top: 45%;
+  left: 150px;
+  width: 350px;
+  border-radius: 5px;
+}
+.diag-head {
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: rgb(5, 238, 255);
+  display: block;
+  text-shadow:
+     1px 1px 0 #000,
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px  1px 0 #000,
+    1px  1px 0 #000;
+}
+.diag-button{
+  background-color: wheat;
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 5px 10px;
+  text-shadow: none;
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-top: 10px;
+  text-align: center;
+  color: aqua;
+  font-size: 16px;
+  text-shadow:
+  1px 1px 0 #000,
+ -1px -1px 0 #000,  
+ 1px -1px 0 #000,
+ -1px  1px 0 #000,
+ 1px  1px 0 #000;
+}
+.diag-button:hover {
+  background-color: mediumslateblue;
+  color: white;
 }

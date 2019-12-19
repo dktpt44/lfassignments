@@ -4,10 +4,19 @@ class Game {
     this.pathContainer = document.getElementsByClassName('path-container')[0];
     this.warnElement;
     this.scoreElement;
+    this.coinElement;
+    this.highScore;
+    this.gameScore = 0;
+    this.coins = 0;
+    this.newCoinLane = 1;
+    this.totalCoins;
+    this.showCoins = false;
+    this.coinStoreKey = 'TOTALGAMECOI';
+    this.storageKey = 'GAMEHIGHSCORE';
     this.player;
     this.playerIndex = 1;
     this.changeLate = 0;
-    this.levelIncreaser=0;
+    this.levelIncreaser = 0;
     this.oneRunLength;
     this.gameSpeed = 3;
     this.gameState;
@@ -15,7 +24,7 @@ class Game {
     this.obstaclePos2 = 3;
     this.followIndex = 1;
     this.map = [];
-    this.coin=[];
+    this.coin = [];
     this.warningHolder = 0;
     this.bottomPosition = [-120, 0, 94, 168, 222, 261, 292, 316, 335, 351, 365];
     this.heights = [120, 95, 75, 55, 40, 32, 25, 20, 14, 11, 8];
@@ -26,15 +35,45 @@ class Game {
     this.heightIncreaser = [];
     this.timeframe;
     this.gameInterval;
-    this.start();
-    // this.showGameScreen();
+    this.mapContainer.style.backgroundImage = 'url(images/back.jpg)';
+
+    // this.start();
+    this.showGameScreen();
   }
-  showGameScreen = function (){
+  showGameScreen = function () {
     this.mapContainer.style.backgroundImage = 'url(images/front.png)';
-    this.mapContainer.removeChild(this.pathContainer);
-    var playButton=document.createElement('button');
+    var playButton = document.createElement('img');
+    playButton.setAttribute('src', 'images/playbutton.png');
     playButton.classList.add('play-button');
-    // playButton.addEventListener('onclick',this.start().bind(this));
+    this.mapContainer.appendChild(playButton);
+
+    this.highScore = window.localStorage.getItem(this.storageKey);
+    if (this.highScore == null || this.highScore == undefined) {
+      this.highScore = 0;
+    }
+    var temp = window.localStorage.getItem(this.coinStoreKey);
+    if (temp == null || temp == undefined) {
+      temp = 0;
+    }
+    this.totalCoins = parseInt(temp);
+    this.gameState = 'ready';
+
+    var showCoins = document.createElement('span');
+    showCoins.classList.add('totalcoinstxt');
+    showCoins.innerHTML = 'Coins: ' + this.totalCoins;
+    this.mapContainer.appendChild(showCoins)
+
+    var showHigh = document.createElement('span');
+    showHigh.classList.add('highscoretxt');
+    showHigh.innerHTML = 'Highest: ' + this.highScore;
+    this.mapContainer.appendChild(showHigh);
+    playButton.addEventListener('click', function () {
+      this.mapContainer.style.backgroundImage = 'url(images/back.jpg)';
+      this.mapContainer.removeChild(playButton);
+      this.mapContainer.removeChild(showHigh);
+      this.mapContainer.removeChild(showCoins);
+      this.start();
+    }.bind(this));
   }
 
   start = function () {
@@ -43,23 +82,33 @@ class Game {
     this.player.isMovingLR = false;
     this.player.lane = 'center';
     this.gameState = 'running';
+    this.scoreElement = document.createElement('span');
+    this.scoreElement.classList.add('scoretxt');
+    this.scoreElement.innerHTML = this.gameScore;
+
+    this.coinElement = document.createElement('span');
+    this.coinElement.classList.add('cointxt');
+    this.coinElement.innerHTML = this.coins;
+
     this.warnElement = document.createElement('p');
     this.warnElement.classList.add('warning-message');
     this.mapContainer.appendChild(this.warnElement);
-    this.scoreElement = document.createElement('p');
-    this.scoreElement.classList.add('warning-message');
     this.mapContainer.appendChild(this.scoreElement);
+    this.mapContainer.appendChild(this.coinElement);
+
     this.showWarning('warn');
     document.addEventListener('keydown', this.keyInp.bind(this));
     document.addEventListener('keyup', this.keyInpSec.bind(this));
 
     //generating short paths in the beginning without any obstacles
-    while (this.map.length < 9) {
+    while (this.map.length < 8) {
       var indx = this.map.length;
       var newMapE = new Map(this.pathContainer, this.bottomPosition[indx],
         this.leftPosition[indx], this.widths[indx], this.heights[indx], false, 'none');
       this.map.push(newMapE);
     }
+
+
     this.increaseGameSpeed();
     this.gameInterval = setInterval(this.startGame.bind(this), 10);
   }
@@ -96,11 +145,25 @@ class Game {
       var newMapE = new Map(this.pathContainer, this.bottomPosition[indx],
         this.leftPosition[indx], this.widths[indx], this.heights[indx], obs, obsTyp);
       this.map.push(newMapE);
+
+      if (obsTyp == 'none') {
+        if (this.showCoins) {
+          var newCoin = new Coin(this.pathContainer, this.newCoinLane);
+          this.coin.push(newCoin);
+        }
+      } else {
+        if (this.getRandomNum(1, 3) == 2) {
+          this.showCoins = true;
+        } else {
+          this.showCoins = false;
+        }
+        this.newCoinLane = this.getRandomNum(1, 3);
+      }
     }
     if (this.gameSpeed < 4.75) {
       this.levelIncreaser++;
-      if(this.levelIncreaser>500){
-        this.levelIncreaser=0;
+      if (this.levelIncreaser > 500) {
+        this.levelIncreaser = 0;
         this.gameSpeed += 0.25;
         this.increaseGameSpeed();
       }
@@ -125,16 +188,20 @@ class Game {
         this.player.changeImg(this.playerIndex);
       }
     }
+
     //moving map
     var mapIndex;
     for (mapIndex = 0; mapIndex < this.map.length; mapIndex++) {
       var currentMap = this.map[mapIndex];
+      var currentCoin = this.coin[mapIndex];
+
       if (currentMap.botPos < -120) {
         this.obstaclePos1--;
         this.obstaclePos2--;
         currentMap.removeMap();
         this.map.splice(mapIndex, 1);
       }
+
       var newWidth = currentMap.getW;
       var newHeight = currentMap.getH;
       var newLeft = currentMap.leftPos;
@@ -149,6 +216,36 @@ class Game {
       currentMap.setMapAttrs(newWidth, newHeight, newLeft, newBot);
       currentMap.moveMap();
 
+      if (currentCoin != null || currentCoin != undefined) {
+        var coinIndex = 0;
+        if (currentCoin.botPos < -70) {
+          currentCoin.removeCoin();
+          this.coin.splice(mapIndex, 1);
+        }
+        //identifying the position of coin
+        for (var xx = 0; xx < this.bottomPosition.length; xx++) {
+          if (currentCoin.botPos <= this.bottomPosition[xx]) {
+            coinIndex = xx;
+            break;
+          }
+        }
+        //animating coin
+        if (this.changeLate % 5 == 0) {
+          currentCoin.changeImg();
+        }
+        currentCoin.changePos(this.bottomDecreaser[coinIndex - 1], this.widthIncreaser[coinIndex - 1] / 10);
+        //collision detection with coin
+        if (!this.player.isInAir) {
+          if (this.player.botPos + 18 > currentCoin.botPos && this.player.botPos < currentCoin.botPos + currentCoin.coinWH
+            && this.player.leftPos < currentCoin.leftPos + currentCoin.coinWH && this.player.leftPos + this.player.playerWid > currentCoin.leftPos) {
+            currentCoin.collectCoin();
+            this.coin.splice(mapIndex, 1);
+            this.coins++;
+            this.coinElement.innerHTML = this.coins;
+          }
+        }
+      }
+
       //collision detection
       if (currentMap.isObstacle && !this.player.isInAir) {
         //check collision
@@ -160,7 +257,7 @@ class Game {
               currentMap.isThisChecked = true;
             }
             if (this.followIndex == 2) {
-              this.gameState = 'over';
+              this.gameState = 'stopped';
               this.showWarning('died');
               clearInterval(this.gameInterval);
             } else {
@@ -168,21 +265,115 @@ class Game {
             }
           } else if (currentMap.getObstacleType == 'full') {
             clearInterval(this.gameInterval);
-            this.gameState = 'over';
+            this.gameState = 'stopped';
             this.showWarning('died');
+          }
+          if (this.gameState == 'stopped') {
+            this.showRestartDialog();
           }
         }
       }
     }
+    //increasing score
+    if (this.player.isInAir) {
+      this.changeLate++
+    }
+    if (this.changeLate % 5 == 0) {
+      this.gameScore += Math.round(this.gameSpeed * 2);
+      this.scoreElement.innerHTML = this.gameScore;
+    }
   }
+
+  showRestartDialog = function () {
+
+    var restartD = document.createElement('div');
+    restartD.classList.add('restart-diag');
+    this.mapContainer.appendChild(restartD);
+    var headText = document.createElement('span');
+    headText.classList.add('diag-head');
+    restartD.appendChild(headText);
+    if (this.totalCoins < 15) {
+      var txtVal = "Minimum 15 coins required to save you.";
+      headText.innerHTML = txtVal;
+      var butOk = document.createElement('button');
+      butOk.classList.add('diag-button');
+      butOk.style.marginLeft = '140px';
+      restartD.appendChild(butOk);
+      butOk.innerHTML = 'Exit';
+      butOk.addEventListener('click', function () {
+        this.mapContainer.removeChild(restartD);
+        this.gameState = 'over';
+        this.restartGame();
+      }.bind(this));
+    } else {
+      var txtVal = "Save yourself for 15 coins?";
+      headText.innerHTML = txtVal;
+
+      var butOk = document.createElement('button');
+      butOk.classList.add('diag-button');
+      restartD.appendChild(butOk);
+      butOk.innerHTML = 'YES';
+      butOk.style.marginLeft = '110px';
+
+
+      butOk.addEventListener('click', function () {
+        this.totalCoins-=15;
+        this.mapContainer.removeChild(restartD);
+        this.gameState = 'running';
+        this.followIndex = 1;
+        this.restartGame();
+        this.start();
+      }.bind(this));
+
+      var butNo = document.createElement('button');
+      butNo.classList.add('diag-button');
+      restartD.appendChild(butNo);
+      butNo.innerHTML = 'NO';
+
+      butNo.addEventListener('click', function () {
+        this.mapContainer.removeChild(restartD);
+        this.gameState = 'over';
+        this.restartGame();
+      }.bind(this));
+    }
+  }
+  restartGame = function () {
+    var loopIndx = this.map.length;
+    for(var i = 0; i<loopIndx; i++){
+      this.map[i].removeMap();
+    }
+    loopIndx = this.coin.length;
+    for(var i = 0; i<loopIndx;i++){
+      this.coin[i].removeCoin();
+    }
+    this.map =[];
+    this.coin=[];
+    this.player.removePlayer();
+    this.mapContainer.removeChild(this.warnElement);
+    this.mapContainer.removeChild(this.scoreElement);
+    this.mapContainer.removeChild(this.coinElement);
+
+    if (this.gameState == 'over') {
+
+      if (this.gameScore > this.highScore) {
+        this.highScore = this.gameScore;
+        window.localStorage.setItem(this.storageKey, this.highScore);
+      }
+      this.totalCoins += this.coins;
+      window.localStorage.setItem(this.coinStoreKey, this.totalCoins);
+      new Game();
+    }
+
+  }
+
   increaseGameSpeed = function () {
     //time taken in millis
     this.timeframe = 600 / this.gameSpeed;
     var ix;
     //clearing arrays
     this.widthIncreaser = [];
-    this.heightIncreaser=[];
-    this.bottomDecreaser=[];
+    this.heightIncreaser = [];
+    this.bottomDecreaser = [];
     for (ix = 0; ix < 10; ix++) {
       this.widthIncreaser.push((this.widths[ix] - this.widths[ix + 1]) * 10 / this.timeframe);
       this.heightIncreaser.push((this.heights[ix] - this.heights[ix + 1]) * 10 / this.timeframe);

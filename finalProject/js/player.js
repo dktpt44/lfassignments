@@ -35,6 +35,12 @@ class Player {
   get botPos() {
     return this.bottom;
   }
+  get leftPos(){
+    return this.left;
+  }
+  get playerWid(){
+    return this.width;
+  }
   changeImg = function (x) {
     var bot = -(x) * 150 + 'px'
     this.playerImage.style.objectPosition = '0 ' + bot;
@@ -102,13 +108,13 @@ class Player {
           }
         }
         timeout++;
-        this.bottom -= 5;
+        this.bottom -= 6;
         this.playerElement.style.bottom = this.bottom + 'px';
       }
     }
   }
   moveLeft = function () {
-    var newPos = this.left - 100;
+    var newPos = this.left - 90;
     clearInterval(this.animInterval);
     this.animInterval = setInterval(startAnim.bind(this), 10);
     function startAnim() {
@@ -165,7 +171,7 @@ class Player {
     }
   }
   moveRight = function () {
-    var newPos = this.left + 100;
+    var newPos = this.left + 90;
     clearInterval(this.animInterval);
     this.animInterval = setInterval(startAnim.bind(this), 10);
     function startAnim() {
@@ -177,6 +183,9 @@ class Player {
       } 
       this.playerElement.style.left = this.left + 'px';
     }
+  }
+  removePlayer = function () {
+    this.parElem.removeChild(this.playerElement);
   }
 
 }
