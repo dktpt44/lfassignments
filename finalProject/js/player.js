@@ -35,10 +35,10 @@ class Player {
   get botPos() {
     return this.bottom;
   }
-  get leftPos(){
+  get leftPos() {
     return this.left;
   }
-  get playerWid(){
+  get playerWid() {
     return this.width;
   }
   changeImg = function (x) {
@@ -113,6 +113,17 @@ class Player {
       }
     }
   }
+  playerFall = function () {
+    var fall = setInterval(function () {
+      this.bottom-=4;
+      this.height-=6;
+      this.playerElement.style.bottom = this.bottom + 'px';
+      this.playerImage.style.height = this.height + 'px';
+      if(this.bottom<-150){
+        clearInterval(fall);
+      }
+    }.bind(this), 20);
+  }
   moveLeft = function () {
     var newPos = this.left - 90;
     clearInterval(this.animInterval);
@@ -140,8 +151,8 @@ class Player {
         this.left = this.midPos;
         this.isMovingLR = false;
         this.lane = 'center';
-        if(this.isInAir){
-          this.left-=20;
+        if (this.isInAir) {
+          this.left -= 20;
         }
         clearInterval(this.animInterval);
       }
@@ -162,10 +173,10 @@ class Player {
         this.left = this.midPos;
         this.isMovingLR = false;
         this.lane = 'center';
-        if(this.isInAir){
-          this.left-=20;
+        if (this.isInAir) {
+          this.left -= 20;
         }
-      } 
+      }
       this.playerElement.style.left = this.left + 'px';
 
     }
@@ -180,7 +191,7 @@ class Player {
         clearInterval(this.animInterval);
         this.isMovingLR = false;
         this.lane = 'right';
-      } 
+      }
       this.playerElement.style.left = this.left + 'px';
     }
   }

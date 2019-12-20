@@ -3,9 +3,6 @@
   background-color: black;
   height: 100vh;
 }
-/* * {
-  outline: 2px solid red;
-} */
 .map-container {
   width: 650px;
   margin: 0 auto;
@@ -26,7 +23,7 @@
 .warning-message {
   position: absolute;
   width: 600px;
-  top: 40px;
+  top: 80px;
   left: 25px;
   color: red;
   font-size: 25px;
@@ -42,6 +39,12 @@
   left: 220px;
   bottom: 180px;
 }
+.play-button:hover {
+  width: 184px;
+  height: 69px;
+  transform: translate(-2px,2px);
+}
+
 .scoretxt {
   background-image: url(../images/scorebg.png);
   background-size: 100% 100%;

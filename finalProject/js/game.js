@@ -11,7 +11,7 @@ class Game {
     this.newCoinLane = 1;
     this.totalCoins;
     this.showCoins = false;
-    this.coinStoreKey = 'TOTALGAMECOI';
+    this.coinStoreKey = 'GAMETOTALCOINS';
     this.storageKey = 'GAMEHIGHSCORE';
     this.player;
     this.playerIndex = 1;
@@ -68,6 +68,7 @@ class Game {
     showHigh.innerHTML = 'Highest: ' + this.highScore;
     this.mapContainer.appendChild(showHigh);
     playButton.addEventListener('click', function () {
+      this.playSound('click');
       this.mapContainer.style.backgroundImage = 'url(images/back.jpg)';
       this.mapContainer.removeChild(playButton);
       this.mapContainer.removeChild(showHigh);
@@ -107,7 +108,6 @@ class Game {
         this.leftPosition[indx], this.widths[indx], this.heights[indx], false, 'none');
       this.map.push(newMapE);
     }
-
 
     this.increaseGameSpeed();
     this.gameInterval = setInterval(this.startGame.bind(this), 10);
@@ -238,6 +238,7 @@ class Game {
         if (!this.player.isInAir) {
           if (this.player.botPos + 18 > currentCoin.botPos && this.player.botPos < currentCoin.botPos + currentCoin.coinWH
             && this.player.leftPos < currentCoin.leftPos + currentCoin.coinWH && this.player.leftPos + this.player.playerWid > currentCoin.leftPos) {
+            this.playSound('coin');
             currentCoin.collectCoin();
             this.coin.splice(mapIndex, 1);
             this.coins++;
@@ -249,24 +250,31 @@ class Game {
       //collision detection
       if (currentMap.isObstacle && !this.player.isInAir) {
         //check collision
-        if (this.player.botPos + 18 > currentMap.botPos && this.player.botPos < currentMap.botPos + currentMap.getH - 10) {
+        if (this.player.botPos + 18 > currentMap.botPos && this.player.botPos < currentMap.botPos + currentMap.getH - 15) {
           if (currentMap.getObstacleType == 'left' && this.player.lane != 'right' ||
             currentMap.getObstacleType == 'right' && this.player.lane != 'left') {
-            if (!currentMap.isThisChecked) {
-              this.followIndex++;
-              currentMap.isThisChecked = true;
+            if (!(this.player.lane == 'center' && this.player.botPos > currentMap.botPos + currentMap.getH - 40)) {
+              if (!currentMap.isThisChecked) {
+                this.playSound('enemy');
+                this.followIndex++;
+                currentMap.isThisChecked = true;
+              }
+              if (this.followIndex == 2) {
+                this.gameState = 'stopped';
+                this.showWarning('died1');
+                clearInterval(this.gameInterval);
+              } else {
+                this.showWarning('warn');
+              }
+
             }
-            if (this.followIndex == 2) {
-              this.gameState = 'stopped';
-              this.showWarning('died');
-              clearInterval(this.gameInterval);
-            } else {
-              this.showWarning('warn');
-            }
+
           } else if (currentMap.getObstacleType == 'full') {
-            clearInterval(this.gameInterval);
             this.gameState = 'stopped';
-            this.showWarning('died');
+            this.playSound('fall');
+            this.showWarning('died2');
+            clearInterval(this.gameInterval);
+            this.player.playerFall();
           }
           if (this.gameState == 'stopped') {
             this.showRestartDialog();
@@ -285,14 +293,13 @@ class Game {
   }
 
   showRestartDialog = function () {
-
     var restartD = document.createElement('div');
     restartD.classList.add('restart-diag');
     this.mapContainer.appendChild(restartD);
     var headText = document.createElement('span');
     headText.classList.add('diag-head');
     restartD.appendChild(headText);
-    if (this.totalCoins < 15) {
+    if (this.totalCoins < 15 && this.coins < 15) {
       var txtVal = "Minimum 15 coins required to save you.";
       headText.innerHTML = txtVal;
       var butOk = document.createElement('button');
@@ -301,6 +308,7 @@ class Game {
       restartD.appendChild(butOk);
       butOk.innerHTML = 'Exit';
       butOk.addEventListener('click', function () {
+        this.playSound('click');
         this.mapContainer.removeChild(restartD);
         this.gameState = 'over';
         this.restartGame();
@@ -315,9 +323,14 @@ class Game {
       butOk.innerHTML = 'YES';
       butOk.style.marginLeft = '110px';
 
-
       butOk.addEventListener('click', function () {
-        this.totalCoins-=15;
+        this.playSound('revive');
+        if (this.totalCoins > 15) {
+          this.totalCoins -= 15;
+          window.localStorage.setItem(this.coinStoreKey, this.totalCoins);
+        } else {
+          this.coins -= 15;
+        }
         this.mapContainer.removeChild(restartD);
         this.gameState = 'running';
         this.followIndex = 1;
@@ -331,6 +344,7 @@ class Game {
       butNo.innerHTML = 'NO';
 
       butNo.addEventListener('click', function () {
+        this.playSound('click');
         this.mapContainer.removeChild(restartD);
         this.gameState = 'over';
         this.restartGame();
@@ -339,15 +353,15 @@ class Game {
   }
   restartGame = function () {
     var loopIndx = this.map.length;
-    for(var i = 0; i<loopIndx; i++){
+    for (var i = 0; i < loopIndx; i++) {
       this.map[i].removeMap();
     }
     loopIndx = this.coin.length;
-    for(var i = 0; i<loopIndx;i++){
+    for (var i = 0; i < loopIndx; i++) {
       this.coin[i].removeCoin();
     }
-    this.map =[];
-    this.coin=[];
+    this.map = [];
+    this.coin = [];
     this.player.removePlayer();
     this.mapContainer.removeChild(this.warnElement);
     this.mapContainer.removeChild(this.scoreElement);
@@ -386,6 +400,7 @@ class Game {
     }
     var pressedKey = event.keyCode;
     if (pressedKey == 38 && !this.player.isInAir) {
+      this.playSound('jump');
       this.player.isInAir = true;
       this.player.jumpInAir();
     } else if (pressedKey == 37 && !this.player.isMovingLR && this.player.lane == 'center') {
@@ -421,14 +436,40 @@ class Game {
   showWarning = function (whatToDo) {
     var warnText;
     if (whatToDo == 'warn') {
-      warnText = "You have been followed by a monster."
-    } else if (whatToDo == 'died') {
-      warnText = "You died."
+      warnText = "Alien is following you."
+    } else if (whatToDo == 'died1') {
+      warnText = "Alien caught you."
+    } else if (whatToDo == 'died2') {
+      warnText = "Watch our for alien made holes."
     } else if (whatToDo == 'hide') {
       warnText = '';
     }
     this.warnElement.innerHTML = warnText;
   }
+
+  playSound = function (cases) {
+    var soundElem = document.createElement("audio");
+    if (cases == 'click') {
+      soundElem.src = 'audio/click.wav';
+    } else if (cases == 'revive') {
+      soundElem.src = 'audio/rev.wav';
+    } else if (cases == 'jump') {
+      soundElem.src = 'audio/jump.wav';
+    } else if (cases == 'enemy') {
+      soundElem.src = 'audio/enemy.wav';
+    } else if (cases == 'coin') {
+      soundElem.src = 'audio/coin.wav';
+    } else if (cases == 'fall') {
+      soundElem.src = 'audio/fall.wav';
+
+    }
+    soundElem.setAttribute("preload", "auto");
+    soundElem.setAttribute("controls", "none");
+    soundElem.style.display = "none";
+    document.body.appendChild(soundElem);
+    soundElem.play();
+  }
+
 
 }
 var myGame = new Game();
