@@ -10,11 +10,11 @@
   border-radius: 2%;
   position: relative;
   overflow: hidden;
-  height: 750px;
+  height: 700px;
 }
 .path-container {
   width: 650px;
-  margin-top: 388px;
+  margin-top: 338px;
   position: relative;
   overflow: hidden;
   height: 356px;
@@ -44,7 +44,6 @@
   height: 69px;
   transform: translate(-2px,2px);
 }
-
 .scoretxt {
   background-image: url(../images/scorebg.png);
   background-size: 100% 100%;
@@ -97,7 +96,6 @@
   text-align: left;
   color: white;
 }
-
 * {
   text-shadow:
      1.5px  1.5px 0 #000,

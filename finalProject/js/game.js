@@ -36,17 +36,15 @@ class Game {
     this.timeframe;
     this.gameInterval;
     this.mapContainer.style.backgroundImage = 'url(images/back.jpg)';
-
-    // this.start();
     this.showGameScreen();
   }
+
   showGameScreen = function () {
     this.mapContainer.style.backgroundImage = 'url(images/front.png)';
     var playButton = document.createElement('img');
     playButton.setAttribute('src', 'images/playbutton.png');
     playButton.classList.add('play-button');
     this.mapContainer.appendChild(playButton);
-
     this.highScore = window.localStorage.getItem(this.storageKey);
     if (this.highScore == null || this.highScore == undefined) {
       this.highScore = 0;
@@ -57,12 +55,10 @@ class Game {
     }
     this.totalCoins = parseInt(temp);
     this.gameState = 'ready';
-
     var showCoins = document.createElement('span');
     showCoins.classList.add('totalcoinstxt');
     showCoins.innerHTML = 'Coins: ' + this.totalCoins;
     this.mapContainer.appendChild(showCoins)
-
     var showHigh = document.createElement('span');
     showHigh.classList.add('highscoretxt');
     showHigh.innerHTML = 'Highest: ' + this.highScore;
@@ -86,21 +82,17 @@ class Game {
     this.scoreElement = document.createElement('span');
     this.scoreElement.classList.add('scoretxt');
     this.scoreElement.innerHTML = this.gameScore;
-
     this.coinElement = document.createElement('span');
     this.coinElement.classList.add('cointxt');
     this.coinElement.innerHTML = this.coins;
-
     this.warnElement = document.createElement('p');
     this.warnElement.classList.add('warning-message');
     this.mapContainer.appendChild(this.warnElement);
     this.mapContainer.appendChild(this.scoreElement);
     this.mapContainer.appendChild(this.coinElement);
-
     this.showWarning('warn');
     document.addEventListener('keydown', this.keyInp.bind(this));
     document.addEventListener('keyup', this.keyInpSec.bind(this));
-
     //generating short paths in the beginning without any obstacles
     while (this.map.length < 8) {
       var indx = this.map.length;
@@ -108,11 +100,10 @@ class Game {
         this.leftPosition[indx], this.widths[indx], this.heights[indx], false, 'none');
       this.map.push(newMapE);
     }
-
+    //generates increment values
     this.increaseGameSpeed();
     this.gameInterval = setInterval(this.startGame.bind(this), 10);
   }
-
   startGame = function () {
     //adding paths
     while (this.map.length < 11) {
@@ -128,7 +119,6 @@ class Game {
         this.obstaclePos1 = indx;
         dothis();
       }
-
       function dothis() {
         var rndNum = that.getRandomNum(1, 4);
         if (rndNum == 1) {
@@ -145,7 +135,7 @@ class Game {
       var newMapE = new Map(this.pathContainer, this.bottomPosition[indx],
         this.leftPosition[indx], this.widths[indx], this.heights[indx], obs, obsTyp);
       this.map.push(newMapE);
-
+      //adding coins 
       if (obsTyp == 'none') {
         if (this.showCoins) {
           var newCoin = new Coin(this.pathContainer, this.newCoinLane);
@@ -188,34 +178,29 @@ class Game {
         this.player.changeImg(this.playerIndex);
       }
     }
-
     //moving map
     var mapIndex;
     for (mapIndex = 0; mapIndex < this.map.length; mapIndex++) {
       var currentMap = this.map[mapIndex];
       var currentCoin = this.coin[mapIndex];
-
       if (currentMap.botPos < -120) {
         this.obstaclePos1--;
         this.obstaclePos2--;
         currentMap.removeMap();
         this.map.splice(mapIndex, 1);
       }
-
       var newWidth = currentMap.getW;
       var newHeight = currentMap.getH;
       var newLeft = currentMap.leftPos;
       var newBot = currentMap.botPos;
-
       var widIncr = this.widthIncreaser[mapIndex - 1];
       newWidth += widIncr;
       newLeft -= widIncr / 2;
       newHeight += this.heightIncreaser[mapIndex - 1];
       newBot -= this.bottomDecreaser[mapIndex - 1];
-
       currentMap.setMapAttrs(newWidth, newHeight, newLeft, newBot);
       currentMap.moveMap();
-
+      //coin handling
       if (currentCoin != null || currentCoin != undefined) {
         var coinIndex = 0;
         if (currentCoin.botPos < -70) {
@@ -246,8 +231,7 @@ class Game {
           }
         }
       }
-
-      //collision detection
+      //player obstacle collision detection
       if (currentMap.isObstacle && !this.player.isInAir) {
         //check collision
         if (this.player.botPos + 18 > currentMap.botPos && this.player.botPos < currentMap.botPos + currentMap.getH - 15) {
@@ -266,9 +250,7 @@ class Game {
               } else {
                 this.showWarning('warn');
               }
-
             }
-
           } else if (currentMap.getObstacleType == 'full') {
             this.gameState = 'stopped';
             this.playSound('fall');
@@ -299,6 +281,7 @@ class Game {
     var headText = document.createElement('span');
     headText.classList.add('diag-head');
     restartD.appendChild(headText);
+    //when save me cannot be used
     if (this.totalCoins < 15 && this.coins < 15) {
       var txtVal = "Minimum 15 coins required to save you.";
       headText.innerHTML = txtVal;
@@ -314,15 +297,14 @@ class Game {
         this.restartGame();
       }.bind(this));
     } else {
+      //when save me can be used
       var txtVal = "Save yourself for 15 coins?";
       headText.innerHTML = txtVal;
-
       var butOk = document.createElement('button');
       butOk.classList.add('diag-button');
       restartD.appendChild(butOk);
       butOk.innerHTML = 'YES';
       butOk.style.marginLeft = '110px';
-
       butOk.addEventListener('click', function () {
         this.playSound('revive');
         if (this.totalCoins > 15) {
@@ -337,12 +319,10 @@ class Game {
         this.restartGame();
         this.start();
       }.bind(this));
-
       var butNo = document.createElement('button');
       butNo.classList.add('diag-button');
       restartD.appendChild(butNo);
       butNo.innerHTML = 'NO';
-
       butNo.addEventListener('click', function () {
         this.playSound('click');
         this.mapContainer.removeChild(restartD);
@@ -351,6 +331,7 @@ class Game {
       }.bind(this));
     }
   }
+
   restartGame = function () {
     var loopIndx = this.map.length;
     for (var i = 0; i < loopIndx; i++) {
@@ -366,9 +347,7 @@ class Game {
     this.mapContainer.removeChild(this.warnElement);
     this.mapContainer.removeChild(this.scoreElement);
     this.mapContainer.removeChild(this.coinElement);
-
     if (this.gameState == 'over') {
-
       if (this.gameScore > this.highScore) {
         this.highScore = this.gameScore;
         window.localStorage.setItem(this.storageKey, this.highScore);
@@ -377,7 +356,6 @@ class Game {
       window.localStorage.setItem(this.coinStoreKey, this.totalCoins);
       new Game();
     }
-
   }
 
   increaseGameSpeed = function () {
@@ -394,6 +372,7 @@ class Game {
       this.bottomDecreaser.push((this.bottomPosition[ix + 1] - this.bottomPosition[ix]) * 10 / this.timeframe);
     }
   }
+
   keyInp = function () {
     if (this.gameState != 'running') {
       return;
@@ -413,6 +392,7 @@ class Game {
       return;
     }
   }
+
   keyInpSec = function () {
     if (this.gameState != 'running') {
       return;
@@ -461,7 +441,6 @@ class Game {
       soundElem.src = 'audio/coin.wav';
     } else if (cases == 'fall') {
       soundElem.src = 'audio/fall.wav';
-
     }
     soundElem.setAttribute("preload", "auto");
     soundElem.setAttribute("controls", "none");
@@ -469,7 +448,5 @@ class Game {
     document.body.appendChild(soundElem);
     soundElem.play();
   }
-
-
 }
 var myGame = new Game();
