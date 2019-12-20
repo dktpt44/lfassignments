@@ -5,7 +5,6 @@ class Game {
     this.warnElement;
     this.scoreElement;
     this.coinElement;
-    this.soundElem;
     this.highScore;
     this.gameScore = 0;
     this.coins = 0;
@@ -56,11 +55,6 @@ class Game {
     }
     this.totalCoins = parseInt(temp);
     this.gameState = 'ready';
-    this.soundElem = document.createElement("audio");
-    this.soundElem.setAttribute("preload", "auto");
-    this.soundElem.setAttribute("controls", "none");
-    this.soundElem.style.display = "none";
-    document.body.appendChild(this.soundElem);
     var showCoins = document.createElement('span');
     showCoins.classList.add('totalcoinstxt');
     showCoins.innerHTML = 'Coins: ' + this.totalCoins;
@@ -434,20 +428,29 @@ class Game {
   }
 
   playSound = function (cases) {
+    var soundElem = document.createElement("audio");
+    soundElem.setAttribute("preload", "auto");
+    soundElem.setAttribute("controls", "none");
+    soundElem.style.display = "none";
+    document.body.appendChild(soundElem);
     if (cases == 'click') {
-      this.soundElem.src = 'audio/click.wav';
+      soundElem.src = 'audio/click.wav';
     } else if (cases == 'revive') {
-      this.soundElem.src = 'audio/rev.wav';
+      soundElem.src = 'audio/rev.wav';
     } else if (cases == 'jump') {
-      this.soundElem.src = 'audio/jump.wav';
+      soundElem.src = 'audio/jump.wav';
     } else if (cases == 'enemy') {
-      this.soundElem.src = 'audio/enemy.wav';
+      soundElem.src = 'audio/enemy.wav';
     } else if (cases == 'coin') {
-      this.soundElem.src = 'audio/coin.wav';
+      soundElem.src = 'audio/coin.wav';
     } else if (cases == 'fall') {
-      this.soundElem.src = 'audio/fall.wav';
+      soundElem.src = 'audio/fall.wav';
     }
-    this.soundElem.play();
+    soundElem.play();
+    soundElem.addEventListener('ended', function(){
+      soundElem.currentTime = 0;
+      document.body.removeChild(soundElem);
+     });
   }
 }
 var myGame = new Game();
